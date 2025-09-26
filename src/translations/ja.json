@@ -1,0 +1,15 @@
+{
+  "navigation": {
+    "partners": "パートナー",
+    "customers": "お客様",
+    "team": "チーム",
+    "getStarted": "始める"
+  },
+  "hero": {
+    "badge": "200件以上の成功事例",
+    "title": "スタートアップの成長と収益化をサポートします",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "primaryButton": "始めましょう",
+    "secondaryButton": "アクセスする"
+  }
+}

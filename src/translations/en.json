@@ -1,0 +1,15 @@
+{
+  "navigation": {
+    "partners": "Partners",
+    "customers": "Customers", 
+    "team": "Team",
+    "getStarted": "Get started"
+  },
+  "hero": {
+    "badge": "Over 200 successful deals",
+    "title": "We help startups to grow and make money",
+    "description": "Sed ut perspiciatis unde omnis iste natus voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.",
+    "primaryButton": "Let's get started",
+    "secondaryButton": "Get access"
+  }
+}
