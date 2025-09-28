@@ -1,10 +1,24 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useTranslation } from '@/contexts/TranslationContext';
 
-export default function Products({ openProductId = null, onCloseModal = null }) {
+interface ProductsProps {
+  openProductId?: string | null;
+  onCloseModal?: () => void;
+  isContentReady?: boolean;
+}
+
+export default function Products({ openProductId = null, onCloseModal = null, isContentReady = false }: ProductsProps) {
   const [activeModal, setActiveModal] = useState(openProductId);
   const { t } = useTranslation();
+  
+  // Simple scroll animation for the section
+  const { elementRef, isVisible } = useScrollAnimation({
+    threshold: 0.1,
+    triggerOnce: true
+  });
 
   // Handle opening modal when openProductId prop changes
   useEffect(() => {
@@ -13,12 +27,27 @@ export default function Products({ openProductId = null, onCloseModal = null }) 
     }
   }, [openProductId]);
 
+  // Simple approach - just prevent scrolling without changing position
+  useEffect(() => {
+    if (activeModal) {
+      // Simple approach - just prevent scrolling without changing position
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [activeModal]);
+
   // Function to close modal and notify parent
   const closeModal = () => {
     setActiveModal(null);
     if (onCloseModal) {
       onCloseModal();
     }
+    // Dispatch custom event for footer scroll restoration
+    window.dispatchEvent(new CustomEvent('modalClosed'));
   };
 
   // Helper function to ensure arrays are properly formatted
@@ -140,13 +169,21 @@ export default function Products({ openProductId = null, onCloseModal = null }) 
   const activeProduct = allProducts.find(product => product.id === activeModal);
 
   return (
-    <section id="products" className="py-20 bg-gray-50 relative">
+    <section 
+      ref={elementRef}
+      id="products" 
+      className={`py-20 bg-gray-50 relative transition-all duration-1000 ${
+        isVisible ? 'opacity-100' : 'opacity-0'
+      }`}
+    >
       {/* Strong blue gradient at top */}
       <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-cyan-100 to-transparent pointer-events-none"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         
         {/* Section Header */}
-        <div className="mb-16">
+        <div className={`mb-16 transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <h2 className="text-lg font-normal text-gray-500 mb-4">{t('products.title')}</h2>
           <h3 className="text-4xl font-bold text-gray-900 mb-6 leading-tight">
             {t('products.subtitle')}
@@ -156,10 +193,13 @@ export default function Products({ openProductId = null, onCloseModal = null }) 
 
         {/* Hero Product Suite Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-          {productSuites.map((suite) => (
+          {productSuites.map((suite, index) => (
             <div
               key={suite.id}
-              className={`bg-gradient-to-br ${suite.bgGradient} rounded-2xl p-8 text-white relative overflow-hidden`}
+              className={`bg-gradient-to-br ${suite.bgGradient} rounded-2xl p-8 text-white relative overflow-hidden transition-all duration-1000 ${
+                isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-12 scale-95'
+              }`}
+              style={{ transitionDelay: `${index * 200}ms` }}
             >
               {/* Background Pattern */}
               <div className="absolute inset-0 opacity-10">
@@ -180,43 +220,73 @@ export default function Products({ openProductId = null, onCloseModal = null }) 
 
         {/* Product Lists */}
         <div className="space-y-12">
-          {productSuites.map((suite) => (
-            <div key={suite.id}>
+          {productSuites.map((suite, suiteIndex) => (
+            <div key={suite.id} className={`transition-all duration-1000 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`} style={{ transitionDelay: `${(suiteIndex + 1) * 300}ms` }}>
               <h4 className="text-2xl font-bold text-gray-900 mb-6">{suite.title}</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {suite.products.map((product) => (
-                  <div
-                    key={product.id}
-                    onClick={() => setActiveModal(product.id)}
-                    className="bg-white rounded-xl p-6 border border-gray-200 cursor-pointer hover:shadow-lg hover:border-gray-300 transition-all duration-200 group"
-                  >
-                    <div className="flex items-start justify-between mb-4">
-                      <h5 className="text-lg font-semibold text-gray-900 group-hover:text-indigo-600 transition-colors">
-                        {product.name}
-                      </h5>
-                      <svg className="w-5 h-5 text-gray-400 group-hover:text-indigo-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
+                {suite.products.map((product, productIndex) => {
+                  const globalIndex = suiteIndex * 3 + productIndex;
+                  return (
+                    <div
+                      key={product.id}
+                      onClick={() => setActiveModal(product.id)}
+                      className={`bg-white rounded-xl p-6 border border-gray-200 cursor-pointer hover:shadow-lg hover:border-gray-300 transition-all duration-700 group hover-lift ${
+                        isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+                      }`}
+                      style={{ transitionDelay: `${(suiteIndex * 3 + productIndex) * 100}ms` }}
+                    >
+                      <div className="flex items-start justify-between mb-4">
+                        <h5 className="text-lg font-semibold text-gray-900 group-hover:text-indigo-600 transition-colors">
+                          {product.name}
+                        </h5>
+                        <svg className="w-5 h-5 text-gray-400 group-hover:text-indigo-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                      <p className="text-gray-600 text-sm leading-relaxed mb-4">{product.description}</p>
+                      <div className="text-sm text-indigo-600 font-medium group-hover:underline">
+                        {t('products.learnMore')}
+                      </div>
                     </div>
-                    <p className="text-gray-600 text-sm leading-relaxed mb-4">{product.description}</p>
-                    <div className="text-sm text-indigo-600 font-medium group-hover:underline">
-                      {t('products.learnMore')}
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           ))}
         </div>
 
-        {/* Product Detail Modal */}
-        {activeModal && activeProduct && (
+        {/* Product Detail Modal - Using React Portal to bypass transform contexts */}
+        {activeModal && activeProduct && createPortal(
           <div 
-            className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
-            onClick={closeModal}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100vw',
+              height: '100vh',
+              zIndex: 99999,
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              backdropFilter: 'blur(4px)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '16px'
+            }}
+            onClick={() => setActiveModal(null)}
           >
             <div 
-              className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+              style={{
+                backgroundColor: 'white',
+                borderRadius: '16px',
+                maxWidth: '1000px',
+                width: '100%',
+                maxHeight: '90vh',
+                overflowY: 'auto',
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                position: 'relative'
+              }}
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal Header */}
@@ -297,7 +367,8 @@ export default function Products({ openProductId = null, onCloseModal = null }) 
                 </div>
               </div>
             </div>
-          </div>
+          </div>,
+          document.body // This renders the modal directly to body, bypassing all transforms
         )}
 
       </div>

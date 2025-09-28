@@ -1,10 +1,32 @@
 'use client';
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
+import { useScrollAnimation, useStaggeredAnimation } from '@/hooks/useScrollAnimation';
 import { useTranslation } from '@/contexts/TranslationContext';
 
-export default function About({ openCardId = null, onCloseModal = null }) {
+interface AboutProps {
+  openCardId?: number | null;
+  onCloseModal?: () => void;
+  isContentReady?: boolean;
+}
+
+export default function About({ openCardId = null, onCloseModal = undefined, isContentReady = false }: AboutProps) {
   const [activeModal, setActiveModal] = useState<number | null>(openCardId);
   const { t } = useTranslation();
+  
+  // Scroll animations
+  const { elementRef, isVisible } = useScrollAnimation({
+    threshold: 0.1,
+    triggerOnce: true
+  });
+  
+  // Separate scroll animation for text content
+  const { elementRef: textRef, isVisible: isTextVisible } = useScrollAnimation({
+    threshold: 0.3,
+    triggerOnce: true
+  });
+  
+  // Removed staggered animation to prevent reloading effect
 
   // Handle opening modal when openCardId prop changes
   React.useEffect(() => {
@@ -13,12 +35,27 @@ export default function About({ openCardId = null, onCloseModal = null }) {
     }
   }, [openCardId]);
 
+  // Simple approach - just prevent scrolling without changing position
+  React.useEffect(() => {
+    if (activeModal) {
+      // Simple approach - just prevent scrolling without changing position
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [activeModal]);
+
   // Function to close modal and notify parent
   const closeModal = () => {
     setActiveModal(null);
     if (onCloseModal) {
       onCloseModal();
     }
+    // Dispatch custom event for footer scroll restoration
+    window.dispatchEvent(new CustomEvent('modalClosed'));
   };
 
   const cards = [
@@ -58,7 +95,7 @@ export default function About({ openCardId = null, onCloseModal = null }) {
       ],
       icon: (
         <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 916 0zm6 3a2 2 0 11-4 0 2 2 0 914 0zM7 10a2 2 0 11-4 0 2 2 0 914 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 01 5.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 01 9.288 0M15 7a3 3 0 11-6 0 3 3 0 01 6 0zm6 3a2 2 0 11-4 0 2 2 0 01 4 0zM7 10a2 2 0 11-4 0 2 2 0 01 4 0z" />
         </svg>
       ),
       bgColor: "from-purple-50 to-purple-100",
@@ -115,145 +152,233 @@ export default function About({ openCardId = null, onCloseModal = null }) {
   const activeCard = activeModal ? cards.find(card => card.id === activeModal) : null;
 
   return (
-    <section id="about" className="py-20 bg-gray-100 relative">
-      {/* Strong blue gradient at top */}
-      <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-cyan-100 to-transparent pointer-events-none"></div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-8">
-        
-        {/* Title Section */}
-        <div className="mb-12">
-          <h2 className="text-lg font-normal text-gray-500 mb-4">{t('about.title')}</h2>
-          <h3 className="text-3xl font-bold text-gray-900 mb-6 leading-tight">
-            {t('about.subtitle')}
-          </h3>
-          <div className="w-24 h-1 bg-gray-900"></div>
-        </div>
-
-        {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+    <>
+      {/* Main Section - WITHOUT modal inside */}
+      <section 
+        ref={elementRef}
+        id="about" 
+        className={`py-20 bg-gray-100 relative transition-all duration-1000 ${
+          isVisible ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
+        {/* Strong blue gradient at top */}
+        <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-cyan-100 to-transparent pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-8">
           
-          {/* Left Column - Text Content */}
-          <div className="space-y-8">
-            <div>
-              <h4 className="text-xl font-bold text-gray-900 mb-6">
-                {t('about.mainHeading')}
-              </h4>
-              
-              <div className="description">
-                <p className="description-text text-gray-700" style={{
-                  fontSize: '16px',
-                  fontWeight: '500',
-                  lineHeight: '1.8',
-                  marginTop: '32px'
-                }}>
-                  {t('about.description')}
-                </p>
+          {/* Title Section */}
+          <div className={`mb-12 transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`} style={{ transitionDelay: '200ms' }}>
+            <h2 className="text-lg font-normal text-gray-500 mb-4">{t('about.title')}</h2>
+            <h3 className="text-3xl font-bold text-gray-900 mb-6 leading-tight">
+              {t('about.subtitle')}
+            </h3>
+            <div className="w-24 h-1 bg-gray-900"></div>
+          </div>
+
+          {/* Main Content Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            
+            {/* Left Column - Text Content */}
+            <div ref={textRef as React.RefObject<HTMLDivElement>} className={`space-y-8 transition-all duration-1500 ${
+              isTextVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+            }`} style={{ transitionDelay: '200ms' }}>
+              <div>
+                <h4 className="text-xl font-bold text-gray-900 mb-6">
+                  {t('about.mainHeading')}
+                </h4>
+                
+                <div className="description">
+                  <p className="description-text text-gray-700" style={{
+                    fontSize: '16px',
+                    fontWeight: '500',
+                    lineHeight: '1.8',
+                    marginTop: '32px'
+                  }}>
+                    {t('about.description')}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Right Column - Clickable Cards */}
-          <div className="w-full">
-            <div className="grid grid-cols-2 gap-4">
-              {cards.map((card) => (
-                <div
-                  key={card.id}
-                  className={`bg-gradient-to-br ${card.bgColor} rounded-xl p-6 border ${card.borderColor} 
-                    cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-105 group`}
-                  onClick={() => setActiveModal(card.id)}
-                >
-                  <div className={`w-12 h-12 ${card.iconBg} rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-200`}>
-                    {card.icon}
-                  </div>
-                  
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">{card.title}</h4>
-                  <p className="text-sm text-gray-700 leading-relaxed mb-4">{card.summary}</p>
-                  
-                  <div className="flex items-center text-sm text-gray-500 group-hover:text-gray-700 transition-colors">
-                    <span>{t('about.learnMore')}</span>
-                    <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Modal Overlay */}
-        {activeModal && (
-          <div 
-            className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
-            onClick={closeModal}
-          >
-            <div 
-              className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Modal Header */}
-              <div className={`bg-gradient-to-r ${activeCard?.gradientBg} text-white p-8 rounded-t-2xl`}>
-                <div className="flex items-start justify-between">
-                   <div className="flex items-center">
-                     <div className={`w-16 h-16 ${activeCard?.iconBg} rounded-xl flex items-center justify-center mr-4`}>
-                       <div className="w-8 h-8 text-white">
-                         {activeCard && React.cloneElement(activeCard.icon, { 
-                           className: "w-8 h-8 text-white",
-                           fill: "none",
-                           stroke: "currentColor"
-                         })}
-                       </div>
-                     </div>
-                    <div>
-                      <h3 className="text-2xl font-bold mb-2">{activeCard?.title}</h3>
-                      <p className="text-white text-opacity-90">{activeCard?.summary}</p>
+            {/* Right Column - Clickable Cards */}
+            <div className="w-full">
+              <div className="grid grid-cols-2 gap-4">
+                {cards.map((card, index) => (
+                  <div
+                    key={card.id}
+                    className={`bg-gradient-to-br ${card.bgColor} rounded-xl p-6 border ${card.borderColor} 
+                      cursor-pointer transition-all duration-700 hover:shadow-lg hover:scale-105 group hover-lift micro-bounce ${
+                        isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+                      }`}
+                    onClick={() => setActiveModal(card.id)}
+                    style={{ transitionDelay: `${index * 150}ms` }}
+                  >
+                    <div className={`w-12 h-12 ${card.iconBg} rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-200 micro-rotate`}>
+                      {card.icon}
+                    </div>
+                    
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">{card.title}</h4>
+                    <p className="text-sm text-gray-700 leading-relaxed mb-4">{card.summary}</p>
+                    
+                    <div className="flex items-center text-sm text-gray-500 group-hover:text-gray-700 transition-colors">
+                      <span>{t('about.learnMore')}</span>
+                      <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
                     </div>
                   </div>
-                  <button 
-                    onClick={closeModal}
-                    className="text-white hover:text-gray-200 transition-colors"
-                  >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
-              {/* Modal Content */}
-              <div className="p-8">
-                <p className="text-gray-700 text-lg leading-relaxed mb-8">
-                  {activeCard?.fullDescription}
-                </p>
-
-                <h4 className="text-xl font-semibold text-gray-900 mb-6">Key Benefits:</h4>
-                <ul className="space-y-4">
-                  {activeCard?.benefits?.map((benefit, index) => (
-                    <li key={index} className="flex items-start">
-                      <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
-                        <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
-                      <span className="text-gray-700">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-8 pt-6 border-t border-gray-200">
-                  <button 
-                    onClick={closeModal}
-                    className="w-full bg-gray-900 text-white py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors font-semibold"
-                  >
-                    Close
-                  </button>
-                </div>
+                ))}
               </div>
             </div>
           </div>
-        )}
 
-      </div>
-    </section>
+        </div>
+      </section>
+
+      {/* Modal - Using React Portal to bypass transform contexts */}
+      {activeModal && createPortal(
+        <div 
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            zIndex: 99999,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            backdropFilter: 'blur(4px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '16px'
+          }}
+          onClick={() => setActiveModal(null)}
+        >
+          <div 
+            style={{
+              backgroundColor: 'white',
+              borderRadius: '16px',
+              maxWidth: '600px',
+              width: '100%',
+              maxHeight: '90vh',
+              overflowY: 'auto',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+              position: 'relative'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div style={{
+              background: `linear-gradient(to right, ${activeCard?.gradientBg?.includes('indigo') ? '#4f46e5, #7c3aed' : activeCard?.gradientBg?.includes('purple') ? '#9333ea, #ec4899' : activeCard?.gradientBg?.includes('cyan') ? '#0891b2, #1d4ed8' : '#059669, #0d9488'})`,
+              color: 'white',
+              padding: '32px',
+              borderRadius: '16px 16px 0 0'
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <div style={{
+                    width: '64px',
+                    height: '64px',
+                    backgroundColor: activeCard?.iconBg?.includes('indigo') ? '#4f46e5' : activeCard?.iconBg?.includes('purple') ? '#9333ea' : activeCard?.iconBg?.includes('cyan') ? '#0891b2' : '#059669',
+                    borderRadius: '12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginRight: '16px'
+                  }}>
+                    <div style={{ width: '32px', height: '32px', color: 'white' }}>
+                      {activeCard && React.cloneElement(activeCard.icon, { 
+                        style: { width: '32px', height: '32px', color: 'white' },
+                        fill: "none",
+                        stroke: "currentColor"
+                      })}
+                    </div>
+                  </div>
+                  <div>
+                    <h3 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '8px', margin: '0 0 8px 0' }}>
+                      {activeCard?.title}
+                    </h3>
+                    <p style={{ opacity: 0.9, margin: '0' }}>{activeCard?.summary}</p>
+                  </div>
+                </div>
+                <button 
+                  onClick={() => setActiveModal(null)}
+                  style={{ 
+                    color: 'white', 
+                    background: 'none', 
+                    border: 'none', 
+                    fontSize: '24px', 
+                    cursor: 'pointer',
+                    padding: '8px',
+                    borderRadius: '4px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+            
+            {/* Modal Content */}
+            <div style={{ padding: '32px' }}>
+              <p style={{ color: '#374151', fontSize: '18px', lineHeight: '1.6', marginBottom: '32px' }}>
+                {activeCard?.fullDescription}
+              </p>
+              
+              <h4 style={{ fontSize: '20px', fontWeight: '600', color: '#111827', marginBottom: '24px' }}>
+                Key Benefits:
+              </h4>
+              
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                {activeCard?.benefits?.map((benefit, index) => (
+                  <li key={index} style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '16px' }}>
+                    <div style={{
+                      width: '24px',
+                      height: '24px',
+                      backgroundColor: '#dcfce7',
+                      borderRadius: '50%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginRight: '12px',
+                      marginTop: '2px',
+                      flexShrink: 0,
+                      fontSize: '14px',
+                      fontWeight: 'bold',
+                      color: '#16a34a'
+                    }}>
+                      ✓
+                    </div>
+                    <span style={{ color: '#374151' }}>{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+              
+              <div style={{ marginTop: '32px', paddingTop: '24px', borderTop: '1px solid #e5e7eb' }}>
+                <button 
+                  onClick={() => setActiveModal(null)}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#111827',
+                    color: 'white',
+                    padding: '12px 24px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    fontWeight: '600',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>,
+        document.body // This renders the modal directly to body, bypassing all transforms
+      )}
+    </>
   );
 }

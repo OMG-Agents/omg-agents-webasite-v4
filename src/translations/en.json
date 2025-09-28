@@ -52,6 +52,112 @@
     "whyChooseUs": "Why Choose Us",
     "smeFocus": "SME Focus"
   },
+  "footer": {
+    "companyDescription": "OMG Agents provides customized AI solutions for small and medium enterprises, combining proprietary algorithms with personal consultation to drive business growth.",
+    "quickLinks": "Quick Links",
+    "solutions": "Solutions",
+    "company": "Company",
+    "resources": "Resources",
+    "contact": "Contact",
+    "address": "Tsukuba, Japan",
+    "email": "contact@omgagents.ai",
+    "followUs": "Follow Us",
+    "allRightsReserved": "All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "chatSolutions": "Chat Solutions",
+    "voiceSolutions": "Voice Solutions", 
+    "visualSolutions": "Visual Solutions",
+    "aboutUs": "About Us",
+    "ourTechnology": "Our Technology",
+    "whyChooseUs": "Why Choose Us",
+    "caseStudies": "Case Studies",
+    "documentation": "Documentation",
+    "news": "News",
+    "getInTouch": "Get in Touch"
+  },
+  "legal": {
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "lastUpdated": "Last Updated: January 1, 2025",
+      "sections": {
+        "introduction": {
+          "title": "1. Introduction",
+          "content": "OMG Agents (\"we,\" \"our,\" or \"us\") is committed to protecting your privacy and handling your personal information in accordance with applicable laws. This Privacy Policy explains how we collect, use, and protect your personal information when you use our services."
+        },
+        "informationCollection": {
+          "title": "2. Information We Collect",
+          "content": "We may collect the following types of personal information:\n• Name, email address, phone number\n• Company name, job title, department\n• Service usage information\n• Inquiry content\n• Website usage data (IP address, browser information, access times, etc.)"
+        },
+        "informationUse": {
+          "title": "3. How We Use Your Information",
+          "content": "We use the collected personal information for the following purposes:\n• Providing and operating our services\n• Customer support\n• Service improvement and development\n• Marketing activities (with your consent)\n• Legal compliance"
+        },
+        "informationSharing": {
+          "title": "4. Information Sharing",
+          "content": "We will not share your personal information with third parties except in the following cases:\n• When required by law\n• When necessary to protect life, body, or property\n• When necessary for public health or child welfare"
+        },
+        "dataSecurity": {
+          "title": "5. Data Security",
+          "content": "We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction."
+        },
+        "dataRetention": {
+          "title": "6. Data Retention",
+          "content": "We retain personal information for as long as necessary to fulfill the purposes for which it was collected, taking into account the nature of the information and the purpose of its use."
+        },
+        "userRights": {
+          "title": "7. Your Rights",
+          "content": "You have the right to request access, correction, deletion, or restriction of processing of your personal information. We will respond to such requests within a reasonable timeframe."
+        },
+        "contact": {
+          "title": "8. Contact Us",
+          "content": "If you have any questions about this Privacy Policy, please contact us at:\nEmail: contact@omgagents.ai\nAddress: Tsukuba, Japan"
+        }
+      }
+    },
+    "termsOfService": {
+      "title": "Terms of Service",
+      "lastUpdated": "Last Updated: January 1, 2025",
+      "sections": {
+        "introduction": {
+          "title": "1. Introduction",
+          "content": "These Terms of Service (\"Terms\") govern your use of OMG Agents' AI solution services (\"Service\"). By using our Service, you agree to be bound by these Terms."
+        },
+        "serviceDescription": {
+          "title": "2. Service Description",
+          "content": "Our Service provides customized AI solutions for small and medium enterprises. Specific service details are outlined in individual contracts."
+        },
+        "userObligations": {
+          "title": "3. User Obligations",
+          "content": "Users must:\n• Comply with these Terms\n• Provide accurate information\n• Use the Service only for lawful purposes\n• Not infringe on third-party rights\n• Follow our instructions"
+        },
+        "prohibitedActivities": {
+          "title": "4. Prohibited Activities",
+          "content": "Users may not:\n• Violate laws or public order\n• Engage in criminal activities\n• Disrupt or damage our servers or networks\n• Interfere with our service operations\n• Collect or accumulate personal information about other users"
+        },
+        "intellectualProperty": {
+          "title": "5. Intellectual Property",
+          "content": "All intellectual property rights in our Service belong to us or our licensors. Using our Service does not grant you any rights to these intellectual properties."
+        },
+        "serviceModification": {
+          "title": "6. Service Changes",
+          "content": "We may modify or discontinue our Service with prior notice. We are not liable for any damages resulting from such changes."
+        },
+        "liability": {
+          "title": "7. Disclaimer",
+          "content": "We make no warranties, express or implied, regarding the Service's safety, reliability, accuracy, completeness, effectiveness, or security."
+        },
+        "governingLaw": {
+          "title": "8. Governing Law",
+          "content": "These Terms are governed by Japanese law. Any disputes will be subject to the exclusive jurisdiction of the courts in our headquarters' location."
+        },
+        "contact": {
+          "title": "9. Contact Us",
+          "content": "For questions about these Terms, please contact us at:\nEmail: contact@omgagents.ai\nAddress: Tsukuba, Japan"
+        }
+      }
+    }
+  },
   "hero": {
     "badge": "100% in-house developed algorithms",
     "title": "We help {smes} and thrive with personalized {aiSolutions}",
@@ -332,6 +438,53 @@
       "title": "Providing deep and wide added value through ongoing partnership",
       "description": "By combining proprietary technology with dedicated consultation, we solve complex challenges according to your specific objectives and growth trajectory. Our relationship doesn't end at deployment - we continuously optimize and evolve your AI solutions as your business grows.",
       "illustrationText": "Long-term Growth Partnership"
+    }
+  },
+  "contactForm": {
+    "title": "Contact Us",
+    "contactInfo": {
+      "email": "Email",
+      "location": "Location",
+      "businessHours": "Business Hours",
+      "businessHoursValue": "Mon-Fri, 9AM-6PM JST"
+    },
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "company": "Company",
+      "companyPlaceholder": "Your company (optional)",
+      "message": "Tell us about your project",
+      "messagePlaceholder": "Describe your project goals, challenges, and how AI could help. Be as detailed as you'd like - we're here to understand your needs completely.",
+      "messageTip": "💡 Tip: Include your industry, current processes, and desired outcomes",
+      "attachments": "Attachments (Optional)",
+      "attachmentsDragText": "Drag & drop files here, or",
+      "attachmentsBrowseText": "browse files",
+      "attachmentsInfo": "PDF, Word, Text, Images (Max 10MB each, up to 5 files)",
+      "securityTitle": "Security Verification",
+      "securityDescription": "To help us verify you're human, please confirm:",
+      "securityCheck1": "I am a real person, not a bot",
+      "securityCheck2": "I understand this is a business inquiry",
+      "securityNote": "This helps us maintain the quality of our communications",
+      "submitButton": "Send Message",
+      "submittingButton": "Sending...",
+      "expandTextarea": "Expand",
+      "compactTextarea": "Compact"
+    },
+    "validation": {
+      "requiredFields": "Please fill in all required fields.",
+      "nameLength": "Name must be between 2 and 100 characters.",
+      "validEmail": "Please enter a valid email address.",
+      "messageLength": "Message must be between 10 and 2000 characters.",
+      "securityVerification": "Please complete the security verification.",
+      "takeTime": "Please take your time to fill out the form properly.",
+      "spamContent": "Your message contains content that appears to be spam. Please revise and try again.",
+      "rateLimit": "Please wait 30 seconds before submitting another message.",
+      "invalidSubmission": "Invalid submission detected.",
+      "formError": "Form error. Please refresh the page and try again.",
+      "networkError": "Network error. Please check your connection and try again.",
+      "successMessage": "Thank you! Your message has been sent successfully. We'll get back to you soon."
     }
   }
 }

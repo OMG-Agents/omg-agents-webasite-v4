@@ -5,14 +5,12 @@ interface OrbProps {
   hue?: number;
   hoverIntensity?: number;
   rotateOnHover?: boolean;
-  forceHoverState?: boolean;
 }
 
 export default function Orb({
   hue = 0,
   hoverIntensity = 0.2,
-  rotateOnHover = true,
-  forceHoverState = false
+  rotateOnHover = true
 }: OrbProps) {
   const ctnDom = useRef<HTMLDivElement>(null);
 
@@ -255,10 +253,9 @@ export default function Orb({
       program.uniforms.hue.value = hue;
       program.uniforms.hoverIntensity.value = hoverIntensity;
 
-      const effectiveHover = forceHoverState ? 1 : targetHover;
-      program.uniforms.hover.value += (effectiveHover - program.uniforms.hover.value) * 0.1;
+      program.uniforms.hover.value += (targetHover - program.uniforms.hover.value) * 0.1;
 
-      if (rotateOnHover && effectiveHover > 0.5) {
+      if (rotateOnHover && targetHover > 0.5) {
         currentRot += dt * rotationSpeed;
       }
       program.uniforms.rot.value = currentRot;
@@ -275,7 +272,7 @@ export default function Orb({
       container.removeChild(gl.canvas);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
-  }, [hue, hoverIntensity, rotateOnHover, forceHoverState]);
+  }, [hue, hoverIntensity, rotateOnHover]);
 
   return <div ref={ctnDom} className="w-full h-full" />;
 }

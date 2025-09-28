@@ -16,7 +16,7 @@ interface TranslationProviderProps {
 }
 
 export function TranslationProvider({ children }: TranslationProviderProps) {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>('ja');
   const [translations, setTranslations] = useState<Record<string, any>>({});
 
   useEffect(() => {

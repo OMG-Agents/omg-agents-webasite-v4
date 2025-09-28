@@ -7,41 +7,52 @@ import NavigationMenu from './NavigationMenu';
 interface HeaderProps {
   onOpenProduct?: (productId: string) => void;
   onOpenAboutCard?: (cardId: number) => void;
+  onOpenContactModal?: () => void;
+  isLoaded?: boolean;
 }
 
-export default function Header({ onOpenProduct, onOpenAboutCard }: HeaderProps) {
+export default function Header({ onOpenProduct, onOpenAboutCard, onOpenContactModal, isLoaded = false }: HeaderProps) {
   const [state, setState] = useState(false);
   const { t } = useTranslation();
 
   return (
-    <nav className="sticky top-0 z-50 bg-white w-full border-b border-gray-100">
+    <nav className={`sticky top-0 z-50 bg-white w-full border-b border-gray-100 transition-all duration-1000 ${
+      isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+    }`}>
       <div className="flex items-center justify-between w-full px-4 sm:px-8 py-4">
-        {/* Logo */}
-        <div className="flex items-center">
-          <a href="javascript:void(0)">
-            <img
-              src="/omg-logo-original.svg"
-              width={120}
-              height={50}
-              alt="OMG Agents logo"
-              className="w-24 h-10 md:w-[120px] md:h-[50px]"
-            />
-          </a>
-        </div>
+            {/* Logo */}
+            <div className="flex items-center">
+              <button
+                onClick={() => {
+                  const element = document.getElementById('hero');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="transition-all duration-300 hover:opacity-80 hover:scale-105 micro-bounce"
+              >
+                <img
+                  src="/omg-logo-original.svg"
+                  width={120}
+                  height={50}
+                  alt="OMG Agents logo"
+                  className="w-24 h-10 md:w-[120px] md:h-[50px] transition-all duration-300"
+                />
+              </button>
+            </div>
         
         {/* Right side - Contact button and hamburger */}
         <div className="flex items-center space-x-4">
           {/* Contact Button */}
-          <a
-            href="javascript:void(0)"
-            className="hidden sm:flex items-center space-x-2 hover:underline transition-colors"
-            style={{ color: '#733CFF' }}
-            onMouseEnter={(e) => e.target.style.color = '#5A2FD9'}
-            onMouseLeave={(e) => e.target.style.color = '#733CFF'}
-          >
+              <button
+                onClick={onOpenContactModal}
+                className="hidden sm:flex items-center space-x-2 hover:underline transition-all duration-300 text-black hover-lift micro-bounce"
+                onMouseEnter={(e) => e.currentTarget.style.color = '#733CFF'}
+                onMouseLeave={(e) => e.currentTarget.style.color = '#000000'}
+              >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4"
+              className="h-4 w-4 micro-rotate"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -54,7 +65,7 @@ export default function Header({ onOpenProduct, onOpenAboutCard }: HeaderProps) 
               />
             </svg>
             <span className="text-sm font-medium">{t('navigation.contact')}</span>
-          </a>
+          </button>
 
           {/* Language Toggle - Desktop */}
           <div className="hidden sm:block">
@@ -68,7 +79,7 @@ export default function Header({ onOpenProduct, onOpenAboutCard }: HeaderProps) 
           
           {/* Hamburger Menu */}
           <button
-            className="text-gray-600 hover:text-gray-800 outline-none transition-colors"
+            className="text-gray-600 hover:text-gray-800 outline-none transition-all duration-300 hover-lift micro-bounce"
             onClick={() => setState(!state)}
           >
             {state ? (
@@ -111,6 +122,7 @@ export default function Header({ onOpenProduct, onOpenAboutCard }: HeaderProps) 
           onClose={() => setState(false)} 
           onOpenProduct={onOpenProduct}
           onOpenAboutCard={onOpenAboutCard}
+          onOpenContactModal={onOpenContactModal}
         />
       </div>
     </nav>
