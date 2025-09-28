@@ -70,11 +70,11 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
     }`}>
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8">
           
           {/* Company Info */}
-          <div className="lg:col-span-1">
-            <div className="mb-6 -ml-6">
+          <div className="md:col-span-2 lg:col-span-2">
+            <div className="mb-6">
               <button
                 onClick={() => {
                   const element = document.getElementById('hero');
@@ -93,17 +93,17 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
                 />
               </button>
             </div>
-            <p className="text-gray-300 text-sm leading-relaxed max-w-sm">
+            <p className="text-gray-300 text-sm leading-relaxed max-w-md">
               {t('footer.companyDescription')}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-6" style={{ color: '#733CFF' }}>
+            <h3 className="text-base font-bold mb-4 text-white">
               {t('footer.quickLinks')}
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               <li>
                 <button
                   onClick={() => scrollToSection('hero')}
@@ -141,10 +141,10 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
 
           {/* Solutions */}
           <div>
-            <h3 className="text-lg font-semibold mb-6" style={{ color: '#733CFF' }}>
+            <h3 className="text-base font-bold mb-4 text-white">
               {t('footer.solutions')}
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               <li>
                 <button
                   onClick={() => openProduct('chat-1')}
@@ -172,49 +172,11 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
             </ul>
           </div>
 
-          {/* Company & Contact */}
+          {/* Contact Section */}
           <div>
-            <h3 className="text-lg font-semibold mb-6" style={{ color: '#733CFF' }}>
-              {t('footer.company')}
-            </h3>
-            <ul className="space-y-3 mb-8">
-              <li>
-                <button
-                  onClick={() => openAboutCard(1)}
-                  className="text-gray-300 hover:text-white transition-colors text-sm"
-                >
-                  {t('about.card1Title')}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => openAboutCard(2)}
-                  className="text-gray-300 hover:text-white transition-colors text-sm"
-                >
-                  {t('about.card2Title')}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => openAboutCard(3)}
-                  className="text-gray-300 hover:text-white transition-colors text-sm"
-                >
-                  {t('about.card3Title')}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => openAboutCard(4)}
-                  className="text-gray-300 hover:text-white transition-colors text-sm"
-                >
-                  {t('about.card4Title')}
-                </button>
-              </li>
-            </ul>
-            
-            <h4 className="text-sm font-semibold mb-4" style={{ color: '#733CFF' }}>
+            <h3 className="text-base font-bold mb-4 text-white">
               {t('footer.contact')}
-            </h4>
+            </h3>
             <div className="space-y-3 text-sm text-gray-300">
               <p>{t('footer.address')}</p>
               <p>
@@ -227,7 +189,7 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
               </p>
               <button
                 onClick={onOpenContactModal}
-                className="text-purple-400 hover:text-purple-300 transition-colors font-medium"
+                className="inline-flex items-center px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium rounded-lg transition-colors w-full justify-center"
               >
                 {t('navigation.contact')}
               </button>
@@ -237,14 +199,14 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-10">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+      <div className="border-t border-gray-700 bg-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-sm text-gray-400">
               © 2025 OMG Agents. {t('footer.allRightsReserved')}
             </div>
-            <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm">
-              <div className="flex space-x-8">
+            <div className="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-6 text-sm">
+              <div className="flex space-x-6">
                 <button
                   onClick={() => onOpenLegalModal && onOpenLegalModal('privacy')}
                   className="text-gray-400 hover:text-white transition-colors"
