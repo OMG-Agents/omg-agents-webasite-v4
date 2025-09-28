@@ -180,6 +180,15 @@ export default function Orb({
     const renderer = new Renderer({ alpha: true, premultipliedAlpha: false });
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
+    
+    // Prevent layout shift by setting canvas size immediately
+    const dpr = window.devicePixelRatio || 1;
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+    gl.canvas.style.width = width + 'px';
+    gl.canvas.style.height = height + 'px';
+    gl.canvas.style.display = 'block';
+    
     container.appendChild(gl.canvas);
 
     const geometry = new Triangle(gl);

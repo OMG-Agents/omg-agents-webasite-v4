@@ -15,6 +15,7 @@ export default function Home() {
   const [openAboutCardId, setOpenAboutCardId] = useState<number | null>(null);
   const [legalModalType, setLegalModalType] = useState<'privacy' | 'terms' | null>(null);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [contactModalMessage, setContactModalMessage] = useState<string>('');
   
   // Page load animation state
   const { isLoaded, isHeroVisible, isContentReady, loadProgress } = usePageLoad();
@@ -65,12 +66,14 @@ export default function Home() {
     setLegalModalType(null);
   };
 
-  const handleOpenContactModal = () => {
+  const handleOpenContactModal = (preFilledMessage?: string) => {
+    setContactModalMessage(preFilledMessage || '');
     setIsContactModalOpen(true);
   };
 
   const handleCloseContactModal = () => {
     setIsContactModalOpen(false);
+    setContactModalMessage(''); // Clear the message when closing
   };
 
   return (
@@ -110,6 +113,7 @@ export default function Home() {
             openProductId={openProductId} 
             onCloseModal={handleCloseProductModal}
             isContentReady={isContentReady}
+            onOpenContactModal={handleOpenContactModal}
           />
         </section>
         <section id="why-choose">
@@ -140,6 +144,7 @@ export default function Home() {
       <ContactModal
         isOpen={isContactModalOpen}
         onClose={handleCloseContactModal}
+        preFilledMessage={contactModalMessage}
       />
     </div>
   );

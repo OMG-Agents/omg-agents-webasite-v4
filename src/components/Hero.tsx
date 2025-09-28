@@ -11,7 +11,7 @@ interface HeroProps {
 }
 
 export default function Hero({ isVisible = false, isContentReady = false, onOpenContactModal }: HeroProps) {
-  const { t } = useTranslation();
+  const { t, isTranslationsLoaded } = useTranslation();
 
   const scrollToSection = (sectionId: string) => {
     // Ensure smooth scrolling is enabled
@@ -40,6 +40,9 @@ export default function Hero({ isVisible = false, isContentReady = false, onOpen
     threshold: 0.1,
     triggerOnce: true
   });
+
+  // Only show content when translations are loaded to prevent flash
+  const shouldShow = (isVisible || isInView) && isTranslationsLoaded;
   
 
   return (
@@ -47,21 +50,21 @@ export default function Hero({ isVisible = false, isContentReady = false, onOpen
       ref={elementRef}
       id="hero" 
       className={`py-20 bg-white transition-all duration-1000 ${
-        isVisible || isInView ? 'opacity-100' : 'opacity-0'
+        shouldShow ? 'opacity-100' : 'opacity-0'
       }`}
     >
       <div className="max-w-screen-xl mx-auto text-gray-700 gap-x-12 items-center justify-between overflow-hidden md:flex md:px-8">
         <div className={`flex-none space-y-5 px-4 sm:max-w-lg md:px-0 lg:max-w-xl order-2 md:order-1 transition-all duration-1000 delay-200 ${
-          isVisible || isInView ? 'animate-fade-in-left' : 'animate-hidden'
+          shouldShow ? 'animate-fade-in-left' : 'animate-hidden'
         }`}>
           <h1 className={`text-sm text-cyan-600 font-medium transition-all duration-700 delay-300 ${
-            isVisible || isInView ? 'animate-fade-in-up' : 'animate-hidden'
+            shouldShow ? 'animate-fade-in-up' : 'animate-hidden'
           }`}>
             {t('hero.badge')}
           </h1>
           <h2 
             className={`text-4xl text-gray-900 font-extrabold md:text-5xl japanese-heading transition-all duration-700 delay-400 ${
-              isVisible || isInView ? 'animate-fade-in-up' : 'animate-hidden'
+              shouldShow ? 'animate-fade-in-up' : 'animate-hidden'
             }`}
             dangerouslySetInnerHTML={{
               __html: t('hero.title')
@@ -71,7 +74,7 @@ export default function Hero({ isVisible = false, isContentReady = false, onOpen
           />
           <p 
             className={`text-gray-600 japanese-text transition-all duration-700 delay-500 ${
-              isVisible || isInView ? 'animate-fade-in-up' : 'animate-hidden'
+              shouldShow ? 'animate-fade-in-up' : 'animate-hidden'
             }`}
             dangerouslySetInnerHTML={{
               __html: t('hero.description')
@@ -82,7 +85,7 @@ export default function Hero({ isVisible = false, isContentReady = false, onOpen
             }}
           />
           <div className={`items-center gap-x-3 space-y-3 sm:flex sm:space-y-0 transition-all duration-700 delay-600 ${
-            isVisible || isInView ? 'animate-fade-in-up' : 'animate-hidden'
+            shouldShow ? 'animate-fade-in-up' : 'animate-hidden'
           }`}>
             <button
               onClick={handlePrimaryClick}
@@ -111,7 +114,7 @@ export default function Hero({ isVisible = false, isContentReady = false, onOpen
           </div>
         </div>
         <div className={`flex-none mt-14 md:mt-0 md:max-w-xl order-1 md:order-2 transition-all duration-1000 delay-300 ${
-          isVisible || isInView ? 'animate-fade-in-right' : 'animate-hidden'
+          shouldShow ? 'animate-fade-in-right' : 'animate-hidden'
         }`}>
           <div className="h-80 md:h-[600px] orb-container" style={{ width: '100%', position: 'relative', aspectRatio: '1/1', maxWidth: '600px', margin: '0 auto' }}>
             <Orb

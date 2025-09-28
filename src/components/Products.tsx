@@ -8,9 +8,10 @@ interface ProductsProps {
   openProductId?: string | null;
   onCloseModal?: () => void;
   isContentReady?: boolean;
+  onOpenContactModal?: (preFilledMessage?: string) => void;
 }
 
-export default function Products({ openProductId = null, onCloseModal = () => {}, isContentReady = false }: ProductsProps) {
+export default function Products({ openProductId = null, onCloseModal = () => {}, isContentReady = false, onOpenContactModal }: ProductsProps) {
   const [activeModal, setActiveModal] = useState(openProductId);
   const { t, tObject } = useTranslation();
   
@@ -168,6 +169,33 @@ export default function Products({ openProductId = null, onCloseModal = () => {}
   
   const activeProduct = allProducts.find(product => product.id === activeModal);
 
+  // Function to handle demo request
+  const handleDemoRequest = () => {
+    if (!activeProduct || !onOpenContactModal) return;
+    
+    // Map product IDs to demo request keys
+    const productIdToKeyMap: Record<string, string> = {
+      'chat-1': 'customerService',
+      'chat-2': 'internalHelpdesk', 
+      'chat-3': 'knowledgeBase',
+      'voice-1': 'callCenter',
+      'voice-2': 'voiceAutomation',
+      'voice-3': 'callCenter',
+      'visual-1': 'securityMonitoring',
+      'visual-2': 'securityMonitoring',
+      'visual-3': 'businessAnalytics'
+    };
+    
+    const demoRequestKey = productIdToKeyMap[activeProduct.id] || 'general';
+    const demoMessage = t(`products.demoRequests.${demoRequestKey}`);
+    
+    // Close the product modal first
+    closeModal();
+    
+    // Open contact modal with pre-filled message
+    onOpenContactModal(demoMessage);
+  };
+
   return (
     <section 
       ref={elementRef}
@@ -209,7 +237,6 @@ export default function Products({ openProductId = null, onCloseModal = () => {}
               
               {/* Content */}
               <div className="relative z-10">
-                <div className="text-4xl mb-4">{suite.illustration}</div>
                 <h4 className="text-xl font-bold mb-2">{suite.title}</h4>
                 <p className="text-white/80 text-sm mb-4">{suite.tagline}</p>
                 <p className="text-white/90 leading-relaxed">{suite.description}</p>
@@ -361,7 +388,10 @@ export default function Products({ openProductId = null, onCloseModal = () => {}
                   >
                     {t('products.close')}
                   </button>
-                  <button className="px-8 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-semibold">
+                  <button 
+                    onClick={handleDemoRequest}
+                    className="px-8 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-semibold"
+                  >
                     {t('products.requestDemo')}
                   </button>
                 </div>

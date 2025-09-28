@@ -8,6 +8,7 @@ interface TranslationContextType {
   setLanguage: (lang: Language) => void;
   t: (key: string) => string;
   tObject: (key: string) => unknown;
+  isTranslationsLoaded: boolean;
 }
 
 const TranslationContext = createContext<TranslationContextType | undefined>(undefined);
@@ -19,18 +20,22 @@ interface TranslationProviderProps {
 export function TranslationProvider({ children }: TranslationProviderProps) {
   const [language, setLanguage] = useState<Language>('ja');
   const [translations, setTranslations] = useState<Record<string, unknown>>({});
+  const [isTranslationsLoaded, setIsTranslationsLoaded] = useState(false);
 
   useEffect(() => {
     const loadTranslations = async () => {
+      setIsTranslationsLoaded(false);
       try {
         const translationModule = await import(`../translations/${language}.json`);
         setTranslations(translationModule.default);
+        setIsTranslationsLoaded(true);
       } catch (error) {
         console.error('Failed to load translations:', error);
         // Fallback to English if loading fails
         if (language !== 'en') {
           const enModule = await import('../translations/en.json');
           setTranslations(enModule.default);
+          setIsTranslationsLoaded(true);
         }
       }
     };
@@ -69,7 +74,7 @@ export function TranslationProvider({ children }: TranslationProviderProps) {
   };
 
   return (
-    <TranslationContext.Provider value={{ language, setLanguage, t, tObject }}>
+    <TranslationContext.Provider value={{ language, setLanguage, t, tObject, isTranslationsLoaded }}>
       {children}
     </TranslationContext.Provider>
   );

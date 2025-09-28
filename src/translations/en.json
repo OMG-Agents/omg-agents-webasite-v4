@@ -217,6 +217,16 @@
     "commonUseCases": "Common Use Cases",
     "close": "Close",
     "requestDemo": "Request Demo",
+    "demoRequests": {
+      "customerService": "Hi, I'm interested in learning more about your Customer Service Agent solution. Could you please provide me with a demo and more information about how it can help automate our customer support processes?",
+      "internalHelpdesk": "Hello, I'd like to request a demo of your Internal Helpdesk Bot. We're looking to streamline our employee support processes and would love to see how this solution could work for our organization.",
+      "knowledgeBase": "Hi there, I'm interested in your Knowledge Base Assistant. Could you please arrange a demo to show us how it can help improve our internal knowledge management and employee self-service capabilities?",
+      "callCenter": "Hello, I'd like to request a demo of your Call Center AI solution. We're looking to enhance our phone support operations and would appreciate seeing how your voice intelligence technology works.",
+      "voiceAutomation": "Hi, I'm interested in learning more about your Voice Automation system. Could you please provide a demo showing how it can help streamline our voice-based customer interactions?",
+      "securityMonitoring": "Hello, I'd like to request a demo of your Security & Monitoring solution. We're interested in implementing visual AI for our security needs and would love to see how your technology works.",
+      "businessAnalytics": "Hi there, I'm interested in your Business Analytics AI solution. Could you please arrange a demo to show us how it can help improve our data analysis and business insights?",
+      "general": "Hello, I'm interested in learning more about your AI solutions. Could you please provide me with more information and arrange a demo to see how your technology could benefit our business?"
+    },
     "suites": {
       "chat": {
         "title": "OMG Chat Solutions",

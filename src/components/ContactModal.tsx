@@ -7,9 +7,10 @@ import { useTranslation } from '@/contexts/TranslationContext';
 interface ContactModalProps {
   isOpen: boolean;
   onClose: () => void;
+  preFilledMessage?: string;
 }
 
-export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
+export default function ContactModal({ isOpen, onClose, preFilledMessage = '' }: ContactModalProps) {
   const { t } = useTranslation();
   
   // Form state
@@ -21,6 +22,16 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const [expandedTextarea, setExpandedTextarea] = useState(false);
   const [formStartTime, setFormStartTime] = useState<number | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
+
+  // Set pre-filled message when modal opens
+  useEffect(() => {
+    if (isOpen && preFilledMessage && formRef.current) {
+      const messageTextarea = formRef.current.querySelector('textarea[name="message"]') as HTMLTextAreaElement;
+      if (messageTextarea) {
+        messageTextarea.value = preFilledMessage;
+      }
+    }
+  }, [isOpen, preFilledMessage]);
 
   // Close modal on escape key
   useEffect(() => {
