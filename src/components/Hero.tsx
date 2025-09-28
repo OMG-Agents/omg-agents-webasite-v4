@@ -44,6 +44,23 @@ export default function Hero({ isVisible = false, isContentReady = false, onOpen
   // Only show content when translations are loaded to prevent flash
   const shouldShow = (isVisible || isInView) && isTranslationsLoaded;
   
+  // Mobile-specific stable animation state
+  const [mobileAnimated, setMobileAnimated] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    // Check if mobile on mount
+    setIsMobile(window.innerWidth <= 768);
+    
+    if (shouldShow && !mobileAnimated) {
+      // Small delay to ensure stable rendering on mobile
+      const timer = setTimeout(() => {
+        setMobileAnimated(true);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [shouldShow, mobileAnimated]);
+  
 
   return (
     <section 
@@ -51,12 +68,14 @@ export default function Hero({ isVisible = false, isContentReady = false, onOpen
       id="hero" 
       className={`py-20 bg-white transition-all duration-1000 ${
         shouldShow ? 'opacity-100' : 'opacity-0'
+      } ${
+        isMobile ? `hero-mobile-stable ${mobileAnimated ? 'animate-in' : ''}` : ''
       }`}
     >
       <div className="max-w-screen-xl mx-auto text-gray-700 gap-x-12 items-center justify-between overflow-hidden md:flex md:px-8">
         <div className={`flex-none space-y-5 px-4 sm:max-w-lg md:px-0 lg:max-w-xl order-2 md:order-1 transition-all duration-1000 delay-200 ${
           shouldShow ? 'animate-fade-in-left' : 'animate-hidden'
-        }`}>
+        } ${isMobile ? 'hero-content' : ''} ${isMobile && mobileAnimated ? 'visible' : ''}`}>
           <h1 className={`text-sm text-cyan-600 font-medium transition-all duration-700 delay-300 ${
             shouldShow ? 'animate-fade-in-up' : 'animate-hidden'
           }`}>
@@ -115,7 +134,7 @@ export default function Hero({ isVisible = false, isContentReady = false, onOpen
         </div>
         <div className={`flex-none mt-14 md:mt-0 md:max-w-xl order-1 md:order-2 transition-all duration-1000 delay-300 ${
           shouldShow ? 'animate-fade-in-right' : 'animate-hidden'
-        }`}>
+        } ${isMobile ? 'hero-content' : ''} ${isMobile && mobileAnimated ? 'visible' : ''}`}>
           <div className="h-80 md:h-[600px] orb-container" style={{ width: '100%', position: 'relative', aspectRatio: '1/1', maxWidth: '600px', margin: '0 auto' }}>
             <Orb
               hoverIntensity={0.8}

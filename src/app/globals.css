@@ -253,6 +253,38 @@ body {
   .animate-fade-in-scale {
     animation: fadeInScaleMobile 0.8s ease-out forwards;
   }
+
+  /* Mobile Hero specific - more stable animations */
+  .hero-mobile-stable {
+    opacity: 0;
+    transform: translateY(0);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .hero-mobile-stable.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hero-mobile-stable.animate-in .hero-content {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease-out 0.2s, transform 0.4s ease-out 0.2s;
+  }
+
+  .hero-mobile-stable.animate-in .hero-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Prevent animation restarts on mobile */
+  .hero-mobile-stable.animate-in {
+    animation: none !important;
+  }
+
+  .hero-mobile-stable.animate-in * {
+    animation: none !important;
+  }
 }
 
 .animate-slide-in-top {
