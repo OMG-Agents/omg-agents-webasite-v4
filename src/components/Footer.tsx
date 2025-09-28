@@ -65,7 +65,7 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
   }, []);
 
   return (
-    <footer className={`bg-gray-900 text-white transition-all duration-1000 ${
+    <footer className={`bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 text-gray-800 transition-all duration-1000 ${
       isContentReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
     }`}>
       {/* Main Footer Content */}
@@ -93,21 +93,21 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
                 />
               </button>
             </div>
-            <p className="text-gray-300 text-sm leading-relaxed max-w-md">
+            <p className="text-gray-600 text-sm leading-relaxed max-w-md">
               {t('footer.companyDescription')}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-base font-bold mb-4 text-white">
+            <h3 className="text-base font-bold mb-4 text-gray-800">
               {t('footer.quickLinks')}
             </h3>
             <ul className="space-y-2">
               <li>
                 <button
                   onClick={() => scrollToSection('hero')}
-                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                  className="text-gray-600 hover:text-gray-800 transition-colors text-sm"
                 >
                   {t('navigation.home')}
                 </button>
@@ -115,7 +115,7 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
               <li>
                 <button
                   onClick={() => scrollToSection('about')}
-                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                  className="text-gray-600 hover:text-gray-800 transition-colors text-sm"
                 >
                   {t('navigation.about')}
                 </button>
@@ -123,7 +123,7 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
               <li>
                 <button
                   onClick={() => scrollToSection('products')}
-                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                  className="text-gray-600 hover:text-gray-800 transition-colors text-sm"
                 >
                   {t('navigation.products')}
                 </button>
@@ -131,7 +131,7 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
               <li>
                 <button
                   onClick={() => scrollToSection('why-choose')}
-                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                  className="text-gray-600 hover:text-gray-800 transition-colors text-sm"
                 >
                   {t('navigation.whyChoose')}
                 </button>
@@ -141,14 +141,14 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
 
           {/* Solutions */}
           <div>
-            <h3 className="text-base font-bold mb-4 text-white">
+            <h3 className="text-base font-bold mb-4 text-gray-800">
               {t('footer.solutions')}
             </h3>
             <ul className="space-y-2">
               <li>
                 <button
                   onClick={() => openProduct('chat-1')}
-                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                  className="text-gray-600 hover:text-gray-800 transition-colors text-sm"
                 >
                   {t('footer.chatSolutions')}
                 </button>
@@ -156,7 +156,7 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
               <li>
                 <button
                   onClick={() => openProduct('voice-1')}
-                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                  className="text-gray-600 hover:text-gray-800 transition-colors text-sm"
                 >
                   {t('footer.voiceSolutions')}
                 </button>
@@ -164,7 +164,7 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
               <li>
                 <button
                   onClick={() => openProduct('visual-1')}
-                  className="text-gray-300 hover:text-white transition-colors text-sm"
+                  className="text-gray-600 hover:text-gray-800 transition-colors text-sm"
                 >
                   {t('footer.visualSolutions')}
                 </button>
@@ -174,22 +174,22 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
 
           {/* Contact Section */}
           <div>
-            <h3 className="text-base font-bold mb-4 text-white">
+            <h3 className="text-base font-bold mb-4 text-gray-800">
               {t('footer.contact')}
             </h3>
-            <div className="space-y-3 text-sm text-gray-300">
+            <div className="space-y-3 text-sm text-gray-600">
               <p>{t('footer.address')}</p>
               <p>
                 <a 
                   href={`mailto:${t('footer.email')}`}
-                  className="hover:text-white transition-colors"
+                  className="hover:text-gray-800 transition-colors"
                 >
                   {t('footer.email')}
                 </a>
               </p>
               <button
                 onClick={onOpenContactModal}
-                className="inline-flex items-center px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium rounded-lg transition-colors w-full justify-center"
+                className="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors w-full justify-center"
               >
                 {t('navigation.contact')}
               </button>
@@ -199,23 +199,23 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-700 bg-gray-800">
+      <div className="border-t border-gray-200 bg-white/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-sm text-gray-400">
+            <div className="text-sm text-gray-500">
               © 2025 OMG Agents. {t('footer.allRightsReserved')}
             </div>
             <div className="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-6 text-sm">
               <div className="flex space-x-6">
                 <button
                   onClick={() => onOpenLegalModal && onOpenLegalModal('privacy')}
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-gray-500 hover:text-gray-700 transition-colors"
                 >
                   {t('footer.privacyPolicy')}
                 </button>
                 <button
                   onClick={() => onOpenLegalModal && onOpenLegalModal('terms')}
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-gray-500 hover:text-gray-700 transition-colors"
                 >
                   {t('footer.termsOfService')}
                 </button>
