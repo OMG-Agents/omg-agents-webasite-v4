@@ -98,7 +98,7 @@ export default function Home() {
         isLoaded={isLoaded}
       />
       
-      <main>
+      <main className="w-full">
         <Hero 
           isVisible={isHeroVisible}
           isContentReady={isContentReady}

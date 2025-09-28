@@ -72,8 +72,8 @@ export default function Hero({ isVisible = false, isContentReady = false, onOpen
         isMobile ? `hero-mobile-stable ${mobileAnimated ? 'animate-in' : ''}` : ''
       }`}
     >
-      <div className="max-w-screen-xl mx-auto text-gray-700 gap-x-12 items-center justify-between overflow-hidden md:flex md:px-8">
-        <div className={`flex-none space-y-5 px-4 sm:max-w-lg md:px-0 lg:max-w-xl order-2 md:order-1 transition-all duration-1000 delay-200 ${
+      <div className="max-w-7xl mx-auto text-gray-700 gap-x-12 items-center justify-between overflow-hidden md:flex px-4 sm:px-8">
+        <div className={`flex-none space-y-5 sm:max-w-lg md:px-0 lg:max-w-xl order-2 md:order-1 transition-all duration-1000 delay-200 ${
           shouldShow ? 'animate-fade-in-left' : 'animate-hidden'
         } ${isMobile ? 'hero-content' : ''} ${isMobile && mobileAnimated ? 'visible' : ''}`}>
           <h1 className={`text-sm font-medium transition-all duration-700 delay-300 ${
