@@ -72,12 +72,12 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
       <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-cyan-100 to-transparent pointer-events-none"></div>
       
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8">
           
           {/* Company Info */}
           <div className="md:col-span-2 lg:col-span-2">
-            <div className="mb-6 -ml-4">
+            <div className="mb-4 -ml-4">
               <button
                 onClick={() => {
                   const element = document.getElementById('hero');
@@ -96,17 +96,17 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
                 />
               </button>
             </div>
-            <p className="text-gray-600 text-sm leading-relaxed max-w-md mb-4">
+            <p className="text-gray-600 text-sm leading-relaxed max-w-md mb-1 -translate-y-2">
               {t('footer.companyDescription')}
             </p>
-            <div className="text-xs text-gray-500">
+            <div className="text-xs text-gray-500 mt-1 pt-3 border-t border-gray-200">
               © 2025 OMG Agents. {t('footer.allRightsReserved')}
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-base font-bold mb-4 text-gray-800">
+            <h3 className="text-base font-bold mb-3 text-gray-800">
               {t('footer.quickLinks')}
             </h3>
             <ul className="space-y-2">
@@ -147,7 +147,7 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
 
           {/* Solutions */}
           <div>
-            <h3 className="text-base font-bold mb-4 text-gray-800">
+            <h3 className="text-base font-bold mb-3 text-gray-800">
               {t('footer.solutions')}
             </h3>
             <ul className="space-y-2">
@@ -180,13 +180,15 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
 
           {/* Contact Section */}
           <div>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-base font-bold text-gray-800">
                 {t('footer.contact')}
               </h3>
-              <LanguageToggle variant="footer" />
+              <div className="translate-x-40">
+                <LanguageToggle />
+              </div>
             </div>
-            <div className="space-y-3 text-sm text-gray-600">
+            <div className="space-y-2 text-sm text-gray-600">
               <p>{t('footer.address')}</p>
               <p>
                 <a 
@@ -198,14 +200,17 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
               </p>
               <button
                 onClick={onOpenContactModal}
-                className="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors w-full justify-center"
+                className="inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg transition-colors w-full justify-center"
+                style={{ backgroundColor: '#733CFF' }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5d2ddb'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#733CFF'}
               >
                 {t('navigation.contact')}
               </button>
             </div>
             
             {/* Legal Links */}
-            <div className="mt-6 pt-4 border-t border-gray-200">
+            <div className="mt-4 pt-3 border-t border-gray-200">
               <div className="flex space-x-4 text-xs">
                 <button
                   onClick={() => onOpenLegalModal && onOpenLegalModal('privacy')}
