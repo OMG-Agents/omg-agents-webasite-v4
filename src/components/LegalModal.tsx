@@ -58,8 +58,10 @@ export default function LegalModal({ isOpen, onClose, type }: LegalModalProps) {
 
   if (!isOpen) return null;
 
-  const legalContent = type === 'privacy' ? tObject('legal.privacyPolicy') : tObject('legal.termsOfService');
-  const sections = legalContent?.sections || {};
+  const legalContent = (type === 'privacy' ? tObject('legal.privacyPolicy') : tObject('legal.termsOfService')) as Record<string, unknown>;
+  const sections = (legalContent && typeof legalContent === 'object' && 'sections' in legalContent) 
+    ? legalContent.sections as Record<string, unknown>
+    : {};
 
   const formatContent = (content: string) => {
     return content.split('\n').map((line, index) => (
@@ -89,10 +91,10 @@ export default function LegalModal({ isOpen, onClose, type }: LegalModalProps) {
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <div>
             <h2 className="text-2xl font-bold text-gray-900">
-              {legalContent.title}
+              {legalContent.title as string}
             </h2>
             <p className="text-sm text-gray-500 mt-1">
-              {legalContent.lastUpdated}
+              {legalContent.lastUpdated as string}
             </p>
           </div>
           <button
@@ -122,10 +124,10 @@ export default function LegalModal({ isOpen, onClose, type }: LegalModalProps) {
             {Object.entries(sections).map(([key, section]) => (
               <div key={key} className="border-b border-gray-100 pb-6 last:border-b-0">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3" style={{ color: '#733CFF' }}>
-                  {section.title}
+                  {(section as Record<string, unknown>).title as string}
                 </h3>
                 <div className="text-gray-700 leading-relaxed">
-                  {formatContent(section.content)}
+                  {formatContent((section as Record<string, unknown>).content as string)}
                 </div>
               </div>
             ))}

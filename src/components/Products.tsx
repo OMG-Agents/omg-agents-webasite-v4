@@ -10,9 +10,9 @@ interface ProductsProps {
   isContentReady?: boolean;
 }
 
-export default function Products({ openProductId = null, onCloseModal = null, isContentReady = false }: ProductsProps) {
+export default function Products({ openProductId = null, onCloseModal = () => {}, isContentReady = false }: ProductsProps) {
   const [activeModal, setActiveModal] = useState(openProductId);
-  const { t } = useTranslation();
+  const { t, tObject } = useTranslation();
   
   // Simple scroll animation for the section
   const { elementRef, isVisible } = useScrollAnimation({
@@ -51,7 +51,7 @@ export default function Products({ openProductId = null, onCloseModal = null, is
   };
 
   // Helper function to ensure arrays are properly formatted
-  const ensureArray = (value) => {
+  const ensureArray = (value: unknown): string[] => {
     if (Array.isArray(value)) return value;
     if (typeof value === 'string') return [value];
     return [];
@@ -71,24 +71,24 @@ export default function Products({ openProductId = null, onCloseModal = null, is
           name: t('products.chatProducts.customerService.name'),
           description: t('products.chatProducts.customerService.description'),
           fullDescription: t('products.chatProducts.customerService.fullDescription'),
-          features: ensureArray(t('products.chatProducts.customerService.features')),
-          useCases: ensureArray(t('products.chatProducts.customerService.useCases'))
+          features: ensureArray(tObject('products.chatProducts.customerService.features')),
+          useCases: ensureArray(tObject('products.chatProducts.customerService.useCases'))
         },
         {
           id: 'chat-2',
           name: t('products.chatProducts.internalHelpdesk.name'),
           description: t('products.chatProducts.internalHelpdesk.description'),
           fullDescription: t('products.chatProducts.internalHelpdesk.fullDescription'),
-          features: ensureArray(t('products.chatProducts.internalHelpdesk.features')),
-          useCases: ensureArray(t('products.chatProducts.internalHelpdesk.useCases'))
+          features: ensureArray(tObject('products.chatProducts.internalHelpdesk.features')),
+          useCases: ensureArray(tObject('products.chatProducts.internalHelpdesk.useCases'))
         },
         {
           id: 'chat-3',
           name: t('products.chatProducts.leadQualification.name'),
           description: t('products.chatProducts.leadQualification.description'),
           fullDescription: t('products.chatProducts.leadQualification.fullDescription'),
-          features: ensureArray(t('products.chatProducts.leadQualification.features')),
-          useCases: ensureArray(t('products.chatProducts.leadQualification.useCases'))
+          features: ensureArray(tObject('products.chatProducts.leadQualification.features')),
+          useCases: ensureArray(tObject('products.chatProducts.leadQualification.useCases'))
         }
       ]
     },
@@ -105,24 +105,24 @@ export default function Products({ openProductId = null, onCloseModal = null, is
           name: t('products.voiceProducts.voiceAgent.name'),
           description: t('products.voiceProducts.voiceAgent.description'),
           fullDescription: t('products.voiceProducts.voiceAgent.fullDescription'),
-          features: ensureArray(t('products.voiceProducts.voiceAgent.features')),
-          useCases: ensureArray(t('products.voiceProducts.voiceAgent.useCases'))
+          features: ensureArray(tObject('products.voiceProducts.voiceAgent.features')),
+          useCases: ensureArray(tObject('products.voiceProducts.voiceAgent.useCases'))
         },
         {
           id: 'voice-2',
           name: t('products.voiceProducts.callAnalytics.name'),
           description: t('products.voiceProducts.callAnalytics.description'),
           fullDescription: t('products.voiceProducts.callAnalytics.fullDescription'),
-          features: ensureArray(t('products.voiceProducts.callAnalytics.features')),
-          useCases: ensureArray(t('products.voiceProducts.callAnalytics.useCases'))
+          features: ensureArray(tObject('products.voiceProducts.callAnalytics.features')),
+          useCases: ensureArray(tObject('products.voiceProducts.callAnalytics.useCases'))
         },
         {
           id: 'voice-3',
           name: t('products.voiceProducts.callCenterSolution.name'),
           description: t('products.voiceProducts.callCenterSolution.description'),
           fullDescription: t('products.voiceProducts.callCenterSolution.fullDescription'),
-          features: ensureArray(t('products.voiceProducts.callCenterSolution.features')),
-          useCases: ensureArray(t('products.voiceProducts.callCenterSolution.useCases'))
+          features: ensureArray(tObject('products.voiceProducts.callCenterSolution.features')),
+          useCases: ensureArray(tObject('products.voiceProducts.callCenterSolution.useCases'))
         }
       ]
     },
@@ -139,24 +139,24 @@ export default function Products({ openProductId = null, onCloseModal = null, is
           name: t('products.visualProducts.securityMonitoring.name'),
           description: t('products.visualProducts.securityMonitoring.description'),
           fullDescription: t('products.visualProducts.securityMonitoring.fullDescription'),
-          features: ensureArray(t('products.visualProducts.securityMonitoring.features')),
-          useCases: ensureArray(t('products.visualProducts.securityMonitoring.useCases'))
+          features: ensureArray(tObject('products.visualProducts.securityMonitoring.features')),
+          useCases: ensureArray(tObject('products.visualProducts.securityMonitoring.useCases'))
         },
         {
           id: 'visual-2',
           name: t('products.visualProducts.elderCare.name'),
           description: t('products.visualProducts.elderCare.description'),
           fullDescription: t('products.visualProducts.elderCare.fullDescription'),
-          features: ensureArray(t('products.visualProducts.elderCare.features')),
-          useCases: ensureArray(t('products.visualProducts.elderCare.useCases'))
+          features: ensureArray(tObject('products.visualProducts.elderCare.features')),
+          useCases: ensureArray(tObject('products.visualProducts.elderCare.useCases'))
         },
         {
           id: 'visual-3',
           name: t('products.visualProducts.businessAnalytics.name'),
           description: t('products.visualProducts.businessAnalytics.description'),
           fullDescription: t('products.visualProducts.businessAnalytics.fullDescription'),
-          features: ensureArray(t('products.visualProducts.businessAnalytics.features')),
-          useCases: ensureArray(t('products.visualProducts.businessAnalytics.useCases'))
+          features: ensureArray(tObject('products.visualProducts.businessAnalytics.features')),
+          useCases: ensureArray(tObject('products.visualProducts.businessAnalytics.useCases'))
         }
       ]
     }
