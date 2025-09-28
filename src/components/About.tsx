@@ -120,10 +120,10 @@ export default function About({ openCardId = null, onCloseModal = undefined, isC
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
         </svg>
       ),
-      bgColor: "from-cyan-50 to-cyan-100",
-      borderColor: "border-cyan-200",
-      iconBg: "bg-cyan-500",
-      gradientBg: "from-cyan-600 to-blue-700"
+      bgColor: "from-purple-50 to-purple-100",
+      borderColor: "border-purple-200",
+      iconBg: "bg-purple-500",
+      gradientBg: "from-purple-600 to-purple-700"
     },
     {
       id: 4,
@@ -162,7 +162,7 @@ export default function About({ openCardId = null, onCloseModal = undefined, isC
         }`}
       >
         {/* Strong blue gradient at top */}
-        <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-cyan-100 to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 left-0 right-0 h-16 pointer-events-none" style={{ background: 'linear-gradient(to bottom, #e9d5ff, transparent)' }}></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
           
           {/* Title Section */}
@@ -270,7 +270,7 @@ export default function About({ openCardId = null, onCloseModal = undefined, isC
           >
             {/* Modal Header */}
             <div style={{
-              background: `linear-gradient(to right, ${activeCard?.gradientBg?.includes('indigo') ? '#4f46e5, #7c3aed' : activeCard?.gradientBg?.includes('purple') ? '#9333ea, #ec4899' : activeCard?.gradientBg?.includes('cyan') ? '#0891b2, #1d4ed8' : '#059669, #0d9488'})`,
+              background: `linear-gradient(to right, ${activeCard?.gradientBg?.includes('indigo') ? '#4f46e5, #7c3aed' : activeCard?.gradientBg?.includes('purple') ? '#733CFF, #9333ea' : activeCard?.gradientBg?.includes('cyan') ? '#733CFF, #1d4ed8' : '#059669, #0d9488'})`,
               color: 'white',
               padding: '32px',
               borderRadius: '16px 16px 0 0'
@@ -280,7 +280,7 @@ export default function About({ openCardId = null, onCloseModal = undefined, isC
                   <div style={{
                     width: '64px',
                     height: '64px',
-                    backgroundColor: activeCard?.iconBg?.includes('indigo') ? '#4f46e5' : activeCard?.iconBg?.includes('purple') ? '#9333ea' : activeCard?.iconBg?.includes('cyan') ? '#0891b2' : '#059669',
+                    backgroundColor: activeCard?.iconBg?.includes('indigo') ? '#4f46e5' : activeCard?.iconBg?.includes('purple') ? '#733CFF' : activeCard?.iconBg?.includes('cyan') ? '#733CFF' : '#059669',
                     borderRadius: '12px',
                     display: 'flex',
                     alignItems: 'center',

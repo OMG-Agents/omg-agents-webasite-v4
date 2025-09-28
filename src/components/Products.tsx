@@ -205,7 +205,7 @@ export default function Products({ openProductId = null, onCloseModal = () => {}
       }`}
     >
       {/* Strong blue gradient at top */}
-      <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-cyan-100 to-transparent pointer-events-none"></div>
+      <div className="absolute top-0 left-0 right-0 h-16 pointer-events-none" style={{ background: 'linear-gradient(to bottom, #e9d5ff, transparent)' }}></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         
         {/* Section Header */}

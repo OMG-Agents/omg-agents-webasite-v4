@@ -75,7 +75,7 @@ export default function WhyChoose({ isContentReady = false }: WhyChooseProps) {
       }`}
     >
       {/* Strong blue gradient at top */}
-      <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-cyan-100 to-transparent pointer-events-none"></div>
+      <div className="absolute top-0 left-0 right-0 h-16 pointer-events-none" style={{ background: 'linear-gradient(to bottom, #e9d5ff, transparent)' }}></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         
         {/* Section Header */}
@@ -204,8 +204,8 @@ export default function WhyChoose({ isContentReady = false }: WhyChooseProps) {
           <div className={`order-2 lg:order-1 transition-all duration-700 delay-700 ${
             visibleItems.includes(2) || forceVisible ? 'animate-fade-in-left' : 'animate-hidden'
           }`}>
-            <div className="bg-gradient-to-br from-cyan-50 to-blue-100 rounded-2xl p-8 h-80 flex items-center justify-center relative overflow-hidden hover-lift">
-              <div className="absolute top-6 right-6 text-6xl font-bold text-cyan-200 opacity-50 animate-pulse">03</div>
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 h-80 flex items-center justify-center relative overflow-hidden hover-lift">
+              <div className="absolute top-6 right-6 text-6xl font-bold opacity-50 animate-pulse" style={{ color: '#733CFF' }}>03</div>
               
               {/* Three solution types */}
               <div className="text-center">

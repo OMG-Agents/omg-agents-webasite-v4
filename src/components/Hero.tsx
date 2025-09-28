@@ -76,9 +76,9 @@ export default function Hero({ isVisible = false, isContentReady = false, onOpen
         <div className={`flex-none space-y-5 px-4 sm:max-w-lg md:px-0 lg:max-w-xl order-2 md:order-1 transition-all duration-1000 delay-200 ${
           shouldShow ? 'animate-fade-in-left' : 'animate-hidden'
         } ${isMobile ? 'hero-content' : ''} ${isMobile && mobileAnimated ? 'visible' : ''}`}>
-          <h1 className={`text-sm text-cyan-600 font-medium transition-all duration-700 delay-300 ${
+          <h1 className={`text-sm font-medium transition-all duration-700 delay-300 ${
             shouldShow ? 'animate-fade-in-up' : 'animate-hidden'
-          }`}>
+          }`} style={{ color: '#733CFF' }}>
             {t('hero.badge')}
           </h1>
           <h2 
@@ -87,8 +87,8 @@ export default function Hero({ isVisible = false, isContentReady = false, onOpen
             }`}
             dangerouslySetInnerHTML={{
               __html: t('hero.title')
-                .replace('{smes}', `<span class="text-cyan-500">${t('hero.smesHighlight')}</span>`)
-                .replace('{aiSolutions}', `<span class="text-cyan-500">${t('hero.aiSolutionsHighlight')}</span>`)
+                .replace('{smes}', `<span style="color: #733CFF">${t('hero.smesHighlight')}</span>`)
+                .replace('{aiSolutions}', `<span style="color: #733CFF">${t('hero.aiSolutionsHighlight')}</span>`)
             }}
           />
           <p 
@@ -97,10 +97,10 @@ export default function Hero({ isVisible = false, isContentReady = false, onOpen
             }`}
             dangerouslySetInnerHTML={{
               __html: t('hero.description')
-                .replace('{chatAgents}', `<span class="text-cyan-600 font-medium">${t('hero.chatAgentsHighlight')}</span>`)
-                .replace('{aiStrategy}', `<span class="text-cyan-600 font-medium">${t('hero.aiStrategyHighlight')}</span>`)
-                .replace('{inHouseAlgorithms}', `<span class="text-cyan-600 font-medium">${t('hero.inHouseAlgorithmsHighlight')}</span>`)
-                .replace('{personalConsultation}', `<span class="text-cyan-500">${t('hero.personalConsultationHighlight')}</span>`)
+                .replace('{chatAgents}', `<span style="color: #733CFF; font-weight: 500">${t('hero.chatAgentsHighlight')}</span>`)
+                .replace('{aiStrategy}', `<span style="color: #733CFF; font-weight: 500">${t('hero.aiStrategyHighlight')}</span>`)
+                .replace('{inHouseAlgorithms}', `<span style="color: #733CFF; font-weight: 500">${t('hero.inHouseAlgorithmsHighlight')}</span>`)
+                .replace('{personalConsultation}', `<span style="color: #733CFF">${t('hero.personalConsultationHighlight')}</span>`)
             }}
           />
           <div className={`items-center gap-x-3 space-y-3 sm:flex sm:space-y-0 transition-all duration-700 delay-600 ${
@@ -108,13 +108,31 @@ export default function Hero({ isVisible = false, isContentReady = false, onOpen
           }`}>
             <button
               onClick={handlePrimaryClick}
-              className="block py-2 px-4 text-center text-white font-medium bg-cyan-600 duration-150 hover:bg-cyan-500 active:bg-cyan-700 rounded-lg shadow hover-bg-subtle"
+              className="block py-2 px-4 text-center text-white font-medium duration-150 rounded-lg shadow hover-bg-subtle"
+              style={{ backgroundColor: '#733CFF' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5d2ddb'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#733CFF'}
             >
               {t('hero.primaryButton')}
             </button>
             <button
               onClick={handleSecondaryClick}
-              className="flex items-center justify-center gap-x-2 py-2 px-4 text-cyan-700 hover:text-cyan-900 font-medium duration-150 active:bg-cyan-50 border border-cyan-300 hover:border-cyan-400 rounded-lg md:inline-flex hover-bg-subtle"
+              className="flex items-center justify-center gap-x-2 py-2 px-4 font-medium duration-150 rounded-lg md:inline-flex hover-bg-subtle"
+              style={{ 
+                color: '#733CFF', 
+                borderColor: '#733CFF',
+                backgroundColor: 'transparent'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = '#5d2ddb';
+                e.currentTarget.style.borderColor = '#5d2ddb';
+                e.currentTarget.style.backgroundColor = '#f3f0ff';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = '#733CFF';
+                e.currentTarget.style.borderColor = '#733CFF';
+                e.currentTarget.style.backgroundColor = 'transparent';
+              }}
             >
               {t('hero.secondaryButton')}
               <svg
