@@ -77,7 +77,7 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
           
           {/* Company Info */}
           <div className="md:col-span-2 lg:col-span-2">
-            <div className="mb-6 -ml-2">
+            <div className="mb-6 -ml-6">
               <button
                 onClick={() => {
                   const element = document.getElementById('hero');
