@@ -6,7 +6,7 @@ type Language = 'en' | 'ja';
 interface TranslationContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (key: string) => string;
+  t: (key: string) => any;
 }
 
 const TranslationContext = createContext<TranslationContextType | undefined>(undefined);
@@ -37,7 +37,7 @@ export function TranslationProvider({ children }: TranslationProviderProps) {
     loadTranslations();
   }, [language]);
 
-  const t = (key: string): string => {
+  const t = (key: string): any => {
     const keys = key.split('.');
     let value: any = translations;
     
@@ -49,7 +49,7 @@ export function TranslationProvider({ children }: TranslationProviderProps) {
       }
     }
     
-    return typeof value === 'string' ? value : key;
+    return value; // Return the actual value (string, array, object, etc.)
   };
 
   return (
@@ -66,3 +66,8 @@ export function useTranslation() {
   }
   return context;
 }
+
+
+
+
+

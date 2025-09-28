@@ -17,7 +17,7 @@ export default () => {
 
   return (
     <>
-      <nav className="relative items-center pt-5 px-4 mx-auto max-w-screen-xl sm:px-8 md:flex md:space-x-6">
+      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 items-center pt-5 px-4 mx-auto max-w-screen-xl sm:px-8 md:flex md:space-x-6">
         <div className="flex justify-between">
           <a href="javascript:void(0)">
             <img
@@ -25,6 +25,7 @@ export default () => {
               width={120}
               height={50}
               alt="OMG Agents logo"
+              className="w-24 h-10 md:w-[120px] md:h-[50px]"
             />
           </a>
           <button
@@ -65,7 +66,7 @@ export default () => {
           </button>
         </div>
         <ul
-          className={`flex-1 justify-between mt-12 md:text-sm md:font-medium md:flex md:mt-0 ${state ? "absolute inset-x-0 px-4 border-b bg-white md:border-none md:static" : "hidden"}`}
+          className={`flex-1 justify-between md:text-sm md:font-medium md:flex md:mt-0 ${state ? "absolute inset-x-0 top-full px-4 pt-4 border-t border-purple-500 border-b bg-white md:border-none md:static" : "hidden"}`}
         >
           <div className="items-center space-y-5 md:flex md:space-x-6 md:space-y-0 md:ml-12">
             {navigation.map((item, idx) => (
@@ -87,26 +88,37 @@ export default () => {
       </nav>
       <section className="py-20 bg-white">
         <div className="max-w-screen-xl mx-auto text-gray-700 gap-x-12 items-center justify-between overflow-hidden md:flex md:px-8">
-          <div className="flex-none space-y-5 px-4 sm:max-w-lg md:px-0 lg:max-w-xl">
-            <h1 className="text-sm text-indigo-600 font-medium">
+          <div className="flex-none space-y-5 px-4 sm:max-w-lg md:px-0 lg:max-w-xl order-2 md:order-1">
+            <h1 className="text-sm text-cyan-600 font-medium">
               {t('hero.badge')}
             </h1>
-            <h2 className="text-4xl text-gray-900 font-extrabold md:text-5xl">
-              {t('hero.title')}
-            </h2>
-            <p>
-              {t('hero.description')}
-            </p>
+            <h2 
+              className="text-4xl text-gray-900 font-extrabold md:text-5xl"
+              dangerouslySetInnerHTML={{
+                __html: t('hero.title')
+                  .replace('{smes}', `<span class="text-cyan-500">${t('hero.smesHighlight')}</span>`)
+                  .replace('{aiSolutions}', `<span class="text-cyan-500">${t('hero.aiSolutionsHighlight')}</span>`)
+              }}
+            />
+            <p 
+              className="text-gray-600 leading-relaxed"
+              dangerouslySetInnerHTML={{
+                __html: t('hero.description')
+                  .replace('{chatAgents}', `<span class="text-cyan-600 font-medium">${t('hero.chatAgentsHighlight')}</span>`)
+                  .replace('{aiStrategy}', `<span class="text-cyan-600 font-medium">${t('hero.aiStrategyHighlight')}</span>`)
+                  .replace('{inHouseAlgorithms}', `<span class="text-cyan-600 font-medium">${t('hero.inHouseAlgorithmsHighlight')}</span>`)
+              }}
+            />
             <div className="items-center gap-x-3 space-y-3 sm:flex sm:space-y-0">
               <a
                 href="javascript:void(0)"
-                className="block py-2 px-4 text-center text-white font-medium bg-indigo-600 duration-150 hover:bg-indigo-500 active:bg-indigo-700 rounded-lg shadow"
+                className="block py-2 px-4 text-center text-white font-medium bg-cyan-600 duration-150 hover:bg-cyan-500 active:bg-cyan-700 rounded-lg shadow"
               >
                 {t('hero.primaryButton')}
               </a>
               <a
                 href="javascript:void(0)"
-                className="flex items-center justify-center gap-x-2 py-2 px-4 text-gray-700 hover:text-gray-900 font-medium duration-150 active:bg-gray-100 border rounded-lg md:inline-flex"
+                className="flex items-center justify-center gap-x-2 py-2 px-4 text-cyan-700 hover:text-cyan-900 font-medium duration-150 active:bg-cyan-50 border border-cyan-300 hover:border-cyan-400 rounded-lg md:inline-flex"
               >
                 {t('hero.secondaryButton')}
                 <svg
@@ -124,8 +136,8 @@ export default () => {
               </a>
             </div>
           </div>
-          <div className="flex-none mt-14 md:mt-0 md:max-w-xl">
-            <div style={{ width: '100%', height: '600px', position: 'relative', aspectRatio: '1/1', maxWidth: '600px', margin: '0 auto' }}>
+          <div className="flex-none mt-14 md:mt-0 md:max-w-xl order-1 md:order-2">
+            <div className="h-80 md:h-[600px]" style={{ width: '100%', position: 'relative', aspectRatio: '1/1', maxWidth: '600px', margin: '0 auto' }}>
               <Orb
                 hoverIntensity={0.5}
                 rotateOnHover={true}

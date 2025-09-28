@@ -6,10 +6,264 @@
     "getStarted": "Get started"
   },
   "hero": {
-    "badge": "Over 200 successful deals",
-    "title": "We help startups to grow and make money",
-    "description": "Sed ut perspiciatis unde omnis iste natus voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.",
-    "primaryButton": "Let's get started",
-    "secondaryButton": "Get access"
+    "badge": "100% in-house developed algorithms",
+    "title": "We help {smes} and thrive with personalized {aiSolutions}",
+    "smesHighlight": "SMEs grow",
+    "aiSolutionsHighlight": "AI solutions",
+    "description": "From intelligent {chatAgents} to complete {aiStrategy} - we combine {inHouseAlgorithms} with personal consultation to deliver solutions that actually fit your business.",
+    "chatAgentsHighlight": "chat agents",
+    "aiStrategyHighlight": "AI strategy", 
+    "inHouseAlgorithmsHighlight": "in-house algorithms",
+    "primaryButton": "See How We Help SMEs",
+    "secondaryButton": "Book Consultation"
+  },
+  "about": {
+    "title": "About",
+    "subtitle": "What is OMG Agents SaaS?",
+    "mainHeading": "We provide personalized AI SaaS solutions and strategic consultation, combining our proprietary algorithms with hands-on partnership.",
+    "description": "OMG Agents is developing next-generation AI SaaS solutions with top industry professionals and our proprietary in-house algorithms. Our platform addresses the specific automation and customer engagement challenges that SMEs encounter as they scale.",
+    "card1Title": "In-House Algorithms",
+    "card1Summary": "100% proprietary technology developed by our expert team",
+    "card1Description": "Our algorithms are built from scratch by our team of AI specialists with over 10 years of experience in machine learning and natural language processing. Unlike off-the-shelf solutions that try to fit every business, our proprietary technology is designed specifically for SME needs.",
+    "card1Benefit1": "Faster implementation times (30-60 days vs 6+ months)",
+    "card1Benefit2": "Better performance optimized for your specific use cases",
+    "card1Benefit3": "Complete customization without vendor limitations",
+    "card1Benefit4": "Direct access to our development team for modifications",
+    "card1Benefit5": "Seamless integration with your existing tools and workflows",
+    "card2Title": "Personal Consultation",
+    "card2Summary": "Individual guidance for your business transformation",
+    "card2Description": "Every OMG Agents client gets a dedicated consultant who becomes an extension of your team. We don't just deploy software - we partner with you through every step of your AI transformation journey, ensuring success from day one through long-term growth.",
+    "card2Benefit1": "Dedicated consultant who learns your business inside-out",
+    "card2Benefit2": "Weekly strategy sessions during implementation",
+    "card2Benefit3": "Custom training for your team on the new systems",
+    "card2Benefit4": "Ongoing optimization based on performance data",
+    "card2Benefit5": "Direct phone/email access to your consultant",
+    "card3Title": "SME Focused",
+    "card3Summary": "Built specifically for growing businesses and their challenges",
+    "card3Description": "While enterprise solutions are built for Fortune 500 companies with massive IT teams and budgets, we specialize exclusively in the unique needs, constraints, and opportunities of small and medium enterprises. Our solutions scale with your growth.",
+    "card3Benefit1": "Enterprise capabilities at SME-friendly pricing",
+    "card3Benefit2": "Quick integration with existing tools (CRM, email, etc.)",
+    "card3Benefit3": "Scales automatically as your business grows",
+    "card3Benefit4": "No need for dedicated IT staff to manage",
+    "card3Benefit5": "Flexible contracts that adapt to your changing needs",
+    "card4Title": "Continuous Innovation",
+    "card4Summary": "Always evolving with your needs and industry changes",
+    "card4Description": "Your AI solution doesn't end at deployment. We continuously monitor performance, analyze new opportunities, and proactively suggest improvements. As AI technology advances and your business grows, your solution evolves with you.",
+    "card4Benefit1": "Monthly performance reviews and optimization suggestions",
+    "card4Benefit2": "Automatic updates with latest AI capabilities",
+    "card4Benefit3": "Proactive identification of new automation opportunities",
+    "card4Benefit4": "Regular strategy sessions to align with business goals",
+    "card4Benefit5": "Access to new features as they're developed",
+    "learnMore": "Click to learn more"
+  },
+  "products": {
+    "title": "Product",
+    "subtitle": "Platform/Product Information",
+    "learnMore": "Learn more →",
+    "keyFeatures": "Key Features",
+    "commonUseCases": "Common Use Cases",
+    "close": "Close",
+    "requestDemo": "Request Demo",
+    "suites": {
+      "chat": {
+        "title": "OMG Chat Solutions",
+        "tagline": "For customer service and internal support",
+        "description": "Maximize customer satisfaction and agent productivity with intelligent chat automation"
+      },
+      "voice": {
+        "title": "OMG Voice Intelligence",
+        "tagline": "For call centers and voice automation",
+        "description": "Transform phone interactions with AI voice agents that sound natural and deliver results"
+      },
+      "visual": {
+        "title": "OMG Visual Intelligence",
+        "tagline": "For security and monitoring applications",
+        "description": "Advanced visual AI for security, elder care, and business analytics"
+      }
+    },
+    "chatProducts": {
+      "customerService": {
+        "name": "Customer Service Agent",
+        "description": "AI chat agents that handle customer inquiries from initial contact to resolution",
+        "fullDescription": "Our Customer Service Agent handles up to 80% of routine customer inquiries automatically, escalating complex issues to human agents with full context. Built specifically for SMEs, it integrates with your existing CRM and support tools.",
+        "features": [
+          "24/7 automated customer support",
+          "Seamless handoff to human agents",
+          "CRM integration (Salesforce, HubSpot, etc.)",
+          "Multi-language support",
+          "Sentiment analysis and escalation triggers",
+          "Custom knowledge base training"
+        ],
+        "useCases": [
+          "E-commerce order tracking and returns",
+          "SaaS technical support and onboarding",
+          "Healthcare appointment scheduling",
+          "Financial services account inquiries"
+        ]
+      },
+      "internalHelpdesk": {
+        "name": "Internal Helpdesk Bot",
+        "description": "Streamline employee support with AI that handles HR, IT, and operational questions",
+        "fullDescription": "Reduce internal support tickets by 70% with an AI assistant that handles employee questions about policies, procedures, IT issues, and more. Integrates with your internal systems and learns from your documentation.",
+        "features": [
+          "HR policy and procedure guidance",
+          "IT support for common issues",
+          "Employee onboarding assistance",
+          "Document and resource discovery",
+          "Time-off request processing",
+          "Expense report guidance"
+        ],
+        "useCases": [
+          "Remote team support and coordination",
+          "New employee onboarding automation",
+          "IT helpdesk ticket reduction",
+          "Policy compliance assistance"
+        ]
+      },
+      "leadQualification": {
+        "name": "Lead Qualification Assistant",
+        "description": "Automatically qualify and route leads while gathering key customer information",
+        "fullDescription": "Turn website visitors into qualified leads automatically. Our AI engages prospects, asks qualifying questions, and routes hot leads to your sales team with complete conversation context and scoring.",
+        "features": [
+          "Intelligent lead scoring and routing",
+          "Custom qualification questionnaires",
+          "CRM integration and data sync",
+          "Appointment scheduling",
+          "Follow-up automation",
+          "Conversion analytics and reporting"
+        ],
+        "useCases": [
+          "Real estate lead qualification",
+          "B2B software sales automation",
+          "Professional services lead capture",
+          "E-commerce consultation booking"
+        ]
+      }
+    },
+    "voiceProducts": {
+      "voiceAgent": {
+        "name": "AI Voice Agent",
+        "description": "Handle incoming calls with natural-sounding AI that can resolve complex service issues",
+        "fullDescription": "Our AI Voice Agent handles customer calls with human-like conversation skills, resolving issues, booking appointments, and providing information. Perfect for SMEs that want enterprise-level phone support without the cost.",
+        "features": [
+          "Natural language conversation",
+          "Call routing and escalation",
+          "Appointment booking and scheduling",
+          "Payment processing over phone",
+          "Call recording and transcription",
+          "Real-time sentiment monitoring"
+        ],
+        "useCases": [
+          "Medical appointment scheduling",
+          "Restaurant reservations and orders",
+          "Service business call handling",
+          "Insurance claim initial processing"
+        ]
+      },
+      "callAnalytics": {
+        "name": "Call Analytics Platform",
+        "description": "Real-time insights into call patterns, sentiment analysis, and performance metrics",
+        "fullDescription": "Get deep insights into your phone interactions with AI-powered analytics. Track sentiment, identify trends, monitor agent performance, and discover opportunities to improve customer experience.",
+        "features": [
+          "Real-time sentiment analysis",
+          "Call pattern and trend analysis",
+          "Agent performance scoring",
+          "Customer satisfaction tracking",
+          "Automated quality assurance",
+          "Custom reporting dashboards"
+        ],
+        "useCases": [
+          "Call center performance optimization",
+          "Customer experience improvement",
+          "Sales call effectiveness analysis",
+          "Compliance monitoring and reporting"
+        ]
+      },
+      "callCenterSolution": {
+        "name": "Complete Call Center Solution",
+        "description": "End-to-end call center platform with AI agents, human backup, and management tools",
+        "fullDescription": "Our comprehensive call center solution combines AI voice agents with human oversight, call routing, and management tools. Perfect for SMEs that need enterprise-level call center capabilities without the complexity and cost.",
+        "features": [
+          "Hybrid AI + human agent workflow",
+          "Intelligent call routing and queuing",
+          "Real-time supervisor dashboard",
+          "Call recording and quality monitoring",
+          "CRM integration and data sync",
+          "Scalable agent capacity management",
+          "Performance analytics and reporting",
+          "Custom scripting and compliance tools"
+        ],
+        "useCases": [
+          "Customer service call center operations",
+          "Sales team call management",
+          "Technical support helpdesk",
+          "Order processing and fulfillment",
+          "Appointment scheduling services",
+          "Insurance claims processing"
+        ]
+      }
+    },
+    "visualProducts": {
+      "securityMonitoring": {
+        "name": "Security Monitoring System",
+        "description": "AI-powered security cameras that detect unusual activity and send real-time alerts",
+        "fullDescription": "Transform any camera into an intelligent security system. Our AI detects suspicious behavior, unauthorized access, and safety incidents in real-time, sending instant alerts to your security team or mobile device.",
+        "features": [
+          "Real-time threat detection",
+          "Facial recognition and access control",
+          "Unusual activity pattern analysis",
+          "Mobile alert system",
+          "Cloud and on-premise deployment",
+          "Integration with existing camera systems"
+        ],
+        "useCases": [
+          "Retail theft prevention",
+          "Office building security",
+          "Construction site monitoring",
+          "Parking lot surveillance"
+        ]
+      },
+      "elderCare": {
+        "name": "Elder Care Monitor",
+        "description": "Discreet monitoring system that tracks activity patterns and detects emergencies",
+        "fullDescription": "Provide peace of mind for families with elderly relatives. Our AI monitors daily activity patterns, detects falls or unusual behavior, and alerts caregivers while respecting privacy and dignity.",
+        "features": [
+          "Fall detection and emergency alerts",
+          "Daily activity pattern monitoring",
+          "Medication compliance tracking",
+          "Privacy-focused design",
+          "Family caregiver notifications",
+          "Healthcare provider integration"
+        ],
+        "useCases": [
+          "Aging in place support",
+          "Assisted living facility monitoring",
+          "Post-hospital recovery oversight",
+          "Family caregiver assistance"
+        ]
+      },
+      "businessAnalytics": {
+        "name": "Business Analytics Vision",
+        "description": "Analyze customer behavior, foot traffic, and operational efficiency through visual AI",
+        "fullDescription": "Understand your business better with visual analytics. Track customer behavior, analyze foot traffic patterns, monitor operational efficiency, and gain insights that drive business decisions.",
+        "features": [
+          "Customer flow and behavior analysis",
+          "Heat mapping and dwell time tracking",
+          "Queue management optimization",
+          "Staff efficiency monitoring",
+          "Safety compliance verification",
+          "Custom analytics dashboards"
+        ],
+        "useCases": [
+          "Retail store optimization",
+          "Restaurant operation analysis",
+          "Gym and fitness center insights",
+          "Office space utilization"
+        ]
+      }
+    }
   }
 }
+
+
+
