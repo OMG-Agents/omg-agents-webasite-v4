@@ -11,13 +11,33 @@ import LegalModal from '@/components/LegalModal';
 import ContactModal from '@/components/ContactModal';
 
 export default function Home() {
-  const [openProductId, setOpenProductId] = useState(null);
-  const [openAboutCardId, setOpenAboutCardId] = useState(null);
+  const [openProductId, setOpenProductId] = useState<string | null>(null);
+  const [openAboutCardId, setOpenAboutCardId] = useState<number | null>(null);
   const [legalModalType, setLegalModalType] = useState<'privacy' | 'terms' | null>(null);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   
   // Page load animation state
   const { isLoaded, isHeroVisible, isContentReady, loadProgress } = usePageLoad();
+
+  // Ensure scroll is always available
+  useEffect(() => {
+    const restoreScroll = () => {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+      document.documentElement.style.scrollBehavior = 'smooth';
+      document.body.style.scrollBehavior = 'smooth';
+    };
+
+    // Listen for modal close events
+    window.addEventListener('modalClosed', restoreScroll);
+    
+    // Restore scroll on page load
+    restoreScroll();
+
+    return () => {
+      window.removeEventListener('modalClosed', restoreScroll);
+    };
+  }, []);
 
   // Removed scroll to top for debugging
 
@@ -54,7 +74,7 @@ export default function Home() {
   };
 
   return (
-    <div className={`page-load-enter ${isLoaded ? 'page-load-enter-active' : ''}`} style={{ scrollBehavior: 'auto' }}>
+    <div className={`page-load-enter ${isLoaded ? 'page-load-enter-active' : ''}`} style={{ scrollBehavior: 'smooth' }}>
       {/* Loading Progress Bar */}
       {!isContentReady && (
         <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
@@ -76,20 +96,27 @@ export default function Home() {
         <Hero 
           isVisible={isHeroVisible}
           isContentReady={isContentReady}
+          onOpenContactModal={handleOpenContactModal}
         />
-        <About 
-          openCardId={openAboutCardId} 
-          onCloseModal={handleCloseAboutModal}
-          isContentReady={isContentReady}
-        />
-        <Products 
-          openProductId={openProductId} 
-          onCloseModal={handleCloseProductModal}
-          isContentReady={isContentReady}
-        />
-        <WhyChoose 
-          isContentReady={isContentReady}
-        />
+        <section id="about">
+          <About 
+            openCardId={openAboutCardId} 
+            onCloseModal={handleCloseAboutModal}
+            isContentReady={isContentReady}
+          />
+        </section>
+        <section id="products">
+          <Products 
+            openProductId={openProductId} 
+            onCloseModal={handleCloseProductModal}
+            isContentReady={isContentReady}
+          />
+        </section>
+        <section id="why-choose">
+          <WhyChoose 
+            isContentReady={isContentReady}
+          />
+        </section>
       </main>
       
       <Footer 

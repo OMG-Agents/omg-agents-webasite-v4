@@ -232,10 +232,10 @@ export default function Products({ openProductId = null, onCloseModal = null, is
                     <div
                       key={product.id}
                       onClick={() => setActiveModal(product.id)}
-                      className={`bg-white rounded-xl p-6 border border-gray-200 cursor-pointer hover:shadow-lg hover:border-gray-300 transition-all duration-700 group hover-lift ${
+                      className={`bg-white rounded-xl p-6 border border-gray-200 cursor-pointer transition-all duration-200 group hover-bg-subtle ${
                         isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
                       }`}
-                      style={{ transitionDelay: `${(suiteIndex * 3 + productIndex) * 100}ms` }}
+                      style={{ transitionDelay: `${(suiteIndex * 3 + productIndex) * 50}ms` }}
                     >
                       <div className="flex items-start justify-between mb-4">
                         <h5 className="text-lg font-semibold text-gray-900 group-hover:text-indigo-600 transition-colors">

@@ -208,21 +208,21 @@ export default function About({ openCardId = null, onCloseModal = undefined, isC
                   <div
                     key={card.id}
                     className={`bg-gradient-to-br ${card.bgColor} rounded-xl p-6 border ${card.borderColor} 
-                      cursor-pointer transition-all duration-700 hover:shadow-lg hover:scale-105 group hover-lift micro-bounce ${
+                      cursor-pointer transition-all duration-200 group hover-bg-subtle ${
                         isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
                       }`}
                     onClick={() => setActiveModal(card.id)}
-                    style={{ transitionDelay: `${index * 150}ms` }}
+                    style={{ transitionDelay: `${index * 100}ms` }}
                   >
-                    <div className={`w-12 h-12 ${card.iconBg} rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-200 micro-rotate`}>
+                    <div className={`w-12 h-12 ${card.iconBg} rounded-lg flex items-center justify-center mb-4 transition-transform duration-200`}>
                       {card.icon}
                     </div>
                     
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">{card.title}</h4>
                     <p className="text-sm text-gray-700 leading-relaxed mb-4">{card.summary}</p>
                     
-                    <div className="flex items-center text-sm text-gray-500 group-hover:text-gray-700 transition-colors">
-                      <span>{t('about.learnMore')}</span>
+                    <div className="flex items-center text-sm text-indigo-600 group-hover:text-indigo-700 transition-colors">
+                      <span className="group-hover:underline">{t('about.learnMore')}</span>
                       <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>

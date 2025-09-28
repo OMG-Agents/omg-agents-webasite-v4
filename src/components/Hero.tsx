@@ -7,10 +7,35 @@ import { useTranslation } from '@/contexts/TranslationContext';
 interface HeroProps {
   isVisible?: boolean;
   isContentReady?: boolean;
+  onOpenContactModal?: () => void;
 }
 
-export default function Hero({ isVisible = false, isContentReady = false }: HeroProps) {
+export default function Hero({ isVisible = false, isContentReady = false, onOpenContactModal }: HeroProps) {
   const { t } = useTranslation();
+
+  const scrollToSection = (sectionId: string) => {
+    // Ensure smooth scrolling is enabled
+    document.documentElement.style.scrollBehavior = 'smooth';
+    document.body.style.scrollBehavior = 'smooth';
+    
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
+  const handlePrimaryClick = () => {
+    scrollToSection('products');
+  };
+
+  const handleSecondaryClick = () => {
+    if (onOpenContactModal) {
+      onOpenContactModal();
+    }
+  };
   const { elementRef, isVisible: isInView } = useScrollAnimation({
     threshold: 0.1,
     triggerOnce: true
@@ -59,22 +84,22 @@ export default function Hero({ isVisible = false, isContentReady = false }: Hero
           <div className={`items-center gap-x-3 space-y-3 sm:flex sm:space-y-0 transition-all duration-700 delay-600 ${
             isVisible || isInView ? 'animate-fade-in-up' : 'animate-hidden'
           }`}>
-            <a
-              href="javascript:void(0)"
-              className="block py-2 px-4 text-center text-white font-medium bg-cyan-600 duration-150 hover:bg-cyan-500 active:bg-cyan-700 rounded-lg shadow hover-lift micro-bounce"
+            <button
+              onClick={handlePrimaryClick}
+              className="block py-2 px-4 text-center text-white font-medium bg-cyan-600 duration-150 hover:bg-cyan-500 active:bg-cyan-700 rounded-lg shadow hover-bg-subtle"
             >
               {t('hero.primaryButton')}
-            </a>
-            <a
-              href="javascript:void(0)"
-              className="flex items-center justify-center gap-x-2 py-2 px-4 text-cyan-700 hover:text-cyan-900 font-medium duration-150 active:bg-cyan-50 border border-cyan-300 hover:border-cyan-400 rounded-lg md:inline-flex hover-lift micro-bounce"
+            </button>
+            <button
+              onClick={handleSecondaryClick}
+              className="flex items-center justify-center gap-x-2 py-2 px-4 text-cyan-700 hover:text-cyan-900 font-medium duration-150 active:bg-cyan-50 border border-cyan-300 hover:border-cyan-400 rounded-lg md:inline-flex hover-bg-subtle"
             >
               {t('hero.secondaryButton')}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
-                className="w-5 h-5 micro-rotate"
+                className="w-5 h-5"
               >
                 <path
                   fillRule="evenodd"
@@ -82,7 +107,7 @@ export default function Hero({ isVisible = false, isContentReady = false }: Hero
                   clipRule="evenodd"
                 />
               </svg>
-            </a>
+            </button>
           </div>
         </div>
         <div className={`flex-none mt-14 md:mt-0 md:max-w-xl order-1 md:order-2 transition-all duration-1000 delay-300 ${

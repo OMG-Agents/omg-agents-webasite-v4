@@ -1,6 +1,7 @@
 'use client';
 import { useTranslation } from '@/contexts/TranslationContext';
 import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 interface LegalModalProps {
   isOpen: boolean;
@@ -9,26 +10,56 @@ interface LegalModalProps {
 }
 
 export default function LegalModal({ isOpen, onClose, type }: LegalModalProps) {
-  const { t } = useTranslation();
+  const { t, tObject } = useTranslation();
 
-  // Store scroll position when modal opens
+  // Close modal on escape key and manage scroll
   useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+
     if (isOpen) {
-      const currentScrollY = window.scrollY;
-      sessionStorage.setItem('footerScrollPosition', currentScrollY.toString());
+      document.addEventListener('keydown', handleEscape);
+      // Store original overflow values
+      const originalBodyOverflow = document.body.style.overflow;
+      const originalDocumentOverflow = document.documentElement.style.overflow;
+      
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      
+      return () => {
+        document.removeEventListener('keydown', handleEscape);
+        // Restore original overflow values
+        document.body.style.overflow = originalBodyOverflow;
+        document.documentElement.style.overflow = originalDocumentOverflow;
+        // Ensure smooth scrolling is restored
+        document.documentElement.style.scrollBehavior = 'smooth';
+        document.body.style.scrollBehavior = 'smooth';
+      };
     }
-  }, [isOpen]);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [isOpen, onClose]);
 
   const handleClose = () => {
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+    document.documentElement.style.scrollBehavior = 'smooth';
+    document.body.style.scrollBehavior = 'smooth';
+    
+    const event = new CustomEvent('modalClosed');
+    window.dispatchEvent(event);
     onClose();
-    // Dispatch custom event for footer scroll restoration
-    window.dispatchEvent(new CustomEvent('modalClosed'));
   };
 
   if (!isOpen) return null;
 
-  const legalContent = type === 'privacy' ? t('legal.privacyPolicy') : t('legal.termsOfService');
-  const sections = legalContent.sections;
+  const legalContent = type === 'privacy' ? tObject('legal.privacyPolicy') : tObject('legal.termsOfService');
+  const sections = legalContent?.sections || {};
 
   const formatContent = (content: string) => {
     return content.split('\n').map((line, index) => (
@@ -38,26 +69,7 @@ export default function LegalModal({ isOpen, onClose, type }: LegalModalProps) {
     ));
   };
 
-  // Prevent body scroll when modal is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
-    } else {
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
-    }
-
-    return () => {
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
-    };
-  }, [isOpen]);
-
-  return (
+  return createPortal(
     <div 
       className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
       style={{ position: 'fixed' }}
@@ -130,6 +142,7 @@ export default function LegalModal({ isOpen, onClose, type }: LegalModalProps) {
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

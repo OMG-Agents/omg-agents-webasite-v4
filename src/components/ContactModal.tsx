@@ -32,12 +32,26 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
     if (isOpen) {
       document.addEventListener('keydown', handleEscape);
+      // Store original overflow values
+      const originalBodyOverflow = document.body.style.overflow;
+      const originalDocumentOverflow = document.documentElement.style.overflow;
+      
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      
+      return () => {
+        document.removeEventListener('keydown', handleEscape);
+        // Restore original overflow values
+        document.body.style.overflow = originalBodyOverflow;
+        document.documentElement.style.overflow = originalDocumentOverflow;
+        // Ensure smooth scrolling is restored
+        document.documentElement.style.scrollBehavior = 'smooth';
+        document.body.style.scrollBehavior = 'smooth';
+      };
     }
 
     return () => {
       document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'unset';
     };
   }, [isOpen, onClose]);
 
@@ -48,6 +62,16 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
       setSelectedFiles([]);
       setExpandedTextarea(false);
       setFormStartTime(Date.now());
+    } else {
+      // When modal closes, ensure scroll is fully restored
+      setTimeout(() => {
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+        document.documentElement.style.scrollBehavior = 'smooth';
+        document.body.style.scrollBehavior = 'smooth';
+        // Force a reflow to ensure changes take effect
+        document.body.offsetHeight;
+      }, 100);
     }
   }, [isOpen]);
 
@@ -342,6 +366,12 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   };
 
   const handleClose = () => {
+    // Immediately restore scroll when closing
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+    document.documentElement.style.scrollBehavior = 'smooth';
+    document.body.style.scrollBehavior = 'smooth';
+    
     // Dispatch modalClosed event for scroll restoration
     const event = new CustomEvent('modalClosed');
     window.dispatchEvent(event);

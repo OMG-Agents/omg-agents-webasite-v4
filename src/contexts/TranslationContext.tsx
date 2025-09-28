@@ -6,7 +6,8 @@ type Language = 'en' | 'ja';
 interface TranslationContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (key: string) => any;
+  t: (key: string) => string;
+  tObject: (key: string) => unknown;
 }
 
 const TranslationContext = createContext<TranslationContextType | undefined>(undefined);
@@ -17,7 +18,7 @@ interface TranslationProviderProps {
 
 export function TranslationProvider({ children }: TranslationProviderProps) {
   const [language, setLanguage] = useState<Language>('ja');
-  const [translations, setTranslations] = useState<Record<string, any>>({});
+  const [translations, setTranslations] = useState<Record<string, unknown>>({});
 
   useEffect(() => {
     const loadTranslations = async () => {
@@ -37,9 +38,9 @@ export function TranslationProvider({ children }: TranslationProviderProps) {
     loadTranslations();
   }, [language]);
 
-  const t = (key: string): any => {
+  const t = (key: string): string => {
     const keys = key.split('.');
-    let value: any = translations;
+    let value: unknown = translations;
     
     for (const k of keys) {
       if (value && typeof value === 'object' && k in value) {
@@ -49,11 +50,26 @@ export function TranslationProvider({ children }: TranslationProviderProps) {
       }
     }
     
-    return value; // Return the actual value (string, array, object, etc.)
+    return typeof value === 'string' ? value : key;
+  };
+
+  const tObject = (key: string): unknown => {
+    const keys = key.split('.');
+    let value: unknown = translations;
+    
+    for (const k of keys) {
+      if (value && typeof value === 'object' && k in value) {
+        value = value[k];
+      } else {
+        return null; // Return null if translation not found
+      }
+    }
+    
+    return value;
   };
 
   return (
-    <TranslationContext.Provider value={{ language, setLanguage, t }}>
+    <TranslationContext.Provider value={{ language, setLanguage, t, tObject }}>
       {children}
     </TranslationContext.Provider>
   );
