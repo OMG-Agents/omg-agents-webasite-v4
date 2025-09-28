@@ -65,9 +65,12 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
   }, []);
 
   return (
-    <footer className={`bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 text-gray-800 transition-all duration-1000 ${
+    <footer className={`bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 text-gray-800 relative transition-all duration-1000 ${
       isContentReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
     }`}>
+      {/* Strong blue gradient at top */}
+      <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-cyan-100 to-transparent pointer-events-none"></div>
+      
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8">
