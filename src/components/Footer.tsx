@@ -69,12 +69,12 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
       isContentReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
     }`}>
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
           
           {/* Company Info */}
           <div className="lg:col-span-1">
-            <div className="mb-4 -ml-6">
+            <div className="mb-6 -ml-6">
               <button
                 onClick={() => {
                   const element = document.getElementById('hero');
@@ -93,17 +93,17 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
                 />
               </button>
             </div>
-            <p className="text-gray-300 text-sm leading-relaxed">
+            <p className="text-gray-300 text-sm leading-relaxed max-w-sm">
               {t('footer.companyDescription')}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4" style={{ color: '#733CFF' }}>
+            <h3 className="text-lg font-semibold mb-6" style={{ color: '#733CFF' }}>
               {t('footer.quickLinks')}
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               <li>
                 <button
                   onClick={() => scrollToSection('hero')}
@@ -141,10 +141,10 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
 
           {/* Solutions */}
           <div>
-            <h3 className="text-lg font-semibold mb-4" style={{ color: '#733CFF' }}>
+            <h3 className="text-lg font-semibold mb-6" style={{ color: '#733CFF' }}>
               {t('footer.solutions')}
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               <li>
                 <button
                   onClick={() => openProduct('chat-1')}
@@ -174,10 +174,10 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
 
           {/* Company & Contact */}
           <div>
-            <h3 className="text-lg font-semibold mb-4" style={{ color: '#733CFF' }}>
+            <h3 className="text-lg font-semibold mb-6" style={{ color: '#733CFF' }}>
               {t('footer.company')}
             </h3>
-            <ul className="space-y-2 mb-6">
+            <ul className="space-y-3 mb-8">
               <li>
                 <button
                   onClick={() => openAboutCard(1)}
@@ -212,10 +212,10 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
               </li>
             </ul>
             
-            <h4 className="text-sm font-semibold mb-3" style={{ color: '#733CFF' }}>
+            <h4 className="text-sm font-semibold mb-4" style={{ color: '#733CFF' }}>
               {t('footer.contact')}
             </h4>
-            <div className="space-y-2 text-sm text-gray-300">
+            <div className="space-y-3 text-sm text-gray-300">
               <p>{t('footer.address')}</p>
               <p>
                 <a 
@@ -238,13 +238,13 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
 
       {/* Bottom Bar */}
       <div className="border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-10">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
             <div className="text-sm text-gray-400">
               © 2025 OMG Agents. {t('footer.allRightsReserved')}
             </div>
-            <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 text-sm">
-              <div className="flex space-x-6">
+            <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm">
+              <div className="flex space-x-8">
                 <button
                   onClick={() => onOpenLegalModal && onOpenLegalModal('privacy')}
                   className="text-gray-400 hover:text-white transition-colors"
