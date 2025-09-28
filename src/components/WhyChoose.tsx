@@ -39,7 +39,8 @@ export default function WhyChoose({ isContentReady = false }: WhyChooseProps) {
         const isInView = rect.top < window.innerHeight && rect.bottom > 0;
         if (isInView) {
           setForceVisible(true);
-          if (isMobile && !mobileAnimated) {
+          // Trigger mobile animation when visible, regardless of mobile state
+          if (window.innerWidth <= 768 && !mobileAnimated) {
             // Small delay for mobile stability
             setTimeout(() => setMobileAnimated(true), 100);
           }
@@ -51,8 +52,18 @@ export default function WhyChoose({ isContentReady = false }: WhyChooseProps) {
     checkVisibility();
     const timeout = setTimeout(checkVisibility, 100);
     
-    return () => clearTimeout(timeout);
-  }, [isMobile, mobileAnimated]);
+    // Also listen for scroll events to catch mobile scroll
+    const handleScroll = () => {
+      checkVisibility();
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      clearTimeout(timeout);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [mobileAnimated]);
   return (
     <section 
       ref={elementRef}
