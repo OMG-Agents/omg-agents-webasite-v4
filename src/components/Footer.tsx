@@ -106,12 +106,9 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
 
           {/* Quick Links */}
           <div>
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-base font-bold text-gray-800">
-                {t('footer.quickLinks')}
-              </h3>
-              <LanguageToggle variant="footer" />
-            </div>
+            <h3 className="text-base font-bold mb-4 text-gray-800">
+              {t('footer.quickLinks')}
+            </h3>
             <ul className="space-y-2">
               <li>
                 <button
@@ -183,9 +180,12 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
 
           {/* Contact Section */}
           <div>
-            <h3 className="text-base font-bold mb-4 text-gray-800">
-              {t('footer.contact')}
-            </h3>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-base font-bold text-gray-800">
+                {t('footer.contact')}
+              </h3>
+              <LanguageToggle variant="footer" />
+            </div>
             <div className="space-y-3 text-sm text-gray-600">
               <p>{t('footer.address')}</p>
               <p>
