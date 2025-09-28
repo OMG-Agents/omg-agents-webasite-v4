@@ -11,7 +11,7 @@ export default function LanguageToggle() {
   return (
     <button
       onClick={toggleLanguage}
-      className="px-3 py-1 text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors duration-200 border border-gray-300 rounded-md hover:border-indigo-300"
+      className="text-sm font-medium text-black hover:text-gray-600 hover:underline transition-colors"
     >
       {language === 'en' ? '日本語' : 'English'}
     </button>

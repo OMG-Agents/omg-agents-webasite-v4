@@ -1,10 +1,25 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from '@/contexts/TranslationContext';
 
-export default function Products() {
-  const [activeModal, setActiveModal] = useState(null);
+export default function Products({ openProductId = null, onCloseModal = null }) {
+  const [activeModal, setActiveModal] = useState(openProductId);
   const { t } = useTranslation();
+
+  // Handle opening modal when openProductId prop changes
+  useEffect(() => {
+    if (openProductId) {
+      setActiveModal(openProductId);
+    }
+  }, [openProductId]);
+
+  // Function to close modal and notify parent
+  const closeModal = () => {
+    setActiveModal(null);
+    if (onCloseModal) {
+      onCloseModal();
+    }
+  };
 
   // Helper function to ensure arrays are properly formatted
   const ensureArray = (value) => {
@@ -125,7 +140,9 @@ export default function Products() {
   const activeProduct = allProducts.find(product => product.id === activeModal);
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section id="products" className="py-20 bg-gray-50 relative">
+      {/* Strong blue gradient at top */}
+      <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-cyan-100 to-transparent pointer-events-none"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         
         {/* Section Header */}
@@ -196,7 +213,7 @@ export default function Products() {
         {activeModal && activeProduct && (
           <div 
             className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
-            onClick={() => setActiveModal(null)}
+            onClick={closeModal}
           >
             <div 
               className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
@@ -211,7 +228,7 @@ export default function Products() {
                     <p className="text-white/90 text-lg">{activeProduct.description}</p>
                   </div>
                   <button 
-                    onClick={() => setActiveModal(null)}
+                    onClick={closeModal}
                     className="text-white hover:text-gray-200 transition-colors"
                   >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -269,7 +286,7 @@ export default function Products() {
 
                 <div className="mt-8 pt-6 border-t border-gray-200 flex justify-between items-center">
                   <button 
-                    onClick={() => setActiveModal(null)}
+                    onClick={closeModal}
                     className="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors font-semibold"
                   >
                     {t('products.close')}

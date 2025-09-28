@@ -2,9 +2,24 @@
 import React, { useState } from 'react';
 import { useTranslation } from '@/contexts/TranslationContext';
 
-export default function About() {
-  const [activeModal, setActiveModal] = useState<number | null>(null);
+export default function About({ openCardId = null, onCloseModal = null }) {
+  const [activeModal, setActiveModal] = useState<number | null>(openCardId);
   const { t } = useTranslation();
+
+  // Handle opening modal when openCardId prop changes
+  React.useEffect(() => {
+    if (openCardId) {
+      setActiveModal(openCardId);
+    }
+  }, [openCardId]);
+
+  // Function to close modal and notify parent
+  const closeModal = () => {
+    setActiveModal(null);
+    if (onCloseModal) {
+      onCloseModal();
+    }
+  };
 
   const cards = [
     {
@@ -100,7 +115,7 @@ export default function About() {
   const activeCard = activeModal ? cards.find(card => card.id === activeModal) : null;
 
   return (
-    <section className="py-20 bg-gray-100 relative">
+    <section id="about" className="py-20 bg-gray-100 relative">
       {/* Strong blue gradient at top */}
       <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-cyan-100 to-transparent pointer-events-none"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
@@ -170,7 +185,7 @@ export default function About() {
         {activeModal && (
           <div 
             className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
-            onClick={() => setActiveModal(null)}
+            onClick={closeModal}
           >
             <div 
               className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
@@ -195,7 +210,7 @@ export default function About() {
                     </div>
                   </div>
                   <button 
-                    onClick={() => setActiveModal(null)}
+                    onClick={closeModal}
                     className="text-white hover:text-gray-200 transition-colors"
                   >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -227,7 +242,7 @@ export default function About() {
 
                 <div className="mt-8 pt-6 border-t border-gray-200">
                   <button 
-                    onClick={() => setActiveModal(null)}
+                    onClick={closeModal}
                     className="w-full bg-gray-900 text-white py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors font-semibold"
                   >
                     Close

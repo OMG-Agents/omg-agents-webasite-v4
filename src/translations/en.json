@@ -3,7 +3,54 @@
     "partners": "Partners",
     "customers": "Customers", 
     "team": "Team",
-    "getStarted": "Get started"
+    "getStarted": "Get started",
+    "contact": "Contact",
+    "services": "Services",
+    "aiChatSolutions": "AI Chat Solutions",
+    "customerService": "Customer Service",
+    "internalSupport": "Internal Support",
+    "knowledgeBase": "Knowledge Base",
+    "aiVoiceSolutions": "AI Voice Solutions",
+    "callCenter": "Call Center",
+    "voiceAutomation": "Voice Automation",
+    "aiVisualSolutions": "AI Visual Solutions",
+    "securityMonitoring": "Security & Monitoring",
+    "businessAnalytics": "Business Analytics",
+    "industries": "Industries",
+    "retailEcommerce": "Retail & E-commerce",
+    "healthcare": "Healthcare",
+    "financialServices": "Financial Services",
+    "education": "Education",
+    "manufacturing": "Manufacturing",
+    "useCases": "Use Cases",
+    "customerSupport": "Customer Support",
+    "salesSupport": "Sales Support",
+    "processAutomation": "Process Automation",
+    "knowledgeManagement": "Knowledge Management",
+    "qualityAssurance": "Quality Assurance",
+    "resources": "Resources",
+    "caseStudies": "Case Studies",
+    "webinars": "Webinars",
+    "documentation": "Documentation",
+    "news": "News",
+    "aboutProducts": "About Products & Services",
+    "contactUs": "Contact Us",
+    "mainSections": "Main Sections",
+    "home": "Home",
+    "about": "About",
+    "products": "Products",
+    "whyChoose": "Why Choose Us",
+    "aiSolutions": "AI Solutions",
+    "chatSolutions": "Chat Solutions",
+    "voiceSolutions": "Voice Solutions",
+    "visualSolutions": "Visual Solutions",
+    "company": "Company",
+    "ourStory": "Our Story",
+    "ourTechnology": "Our Technology",
+    "personalConsultation": "Personal Consultation",
+    "continuousInnovation": "Continuous Innovation",
+    "whyChooseUs": "Why Choose Us",
+    "smeFocus": "SME Focus"
   },
   "hero": {
     "badge": "100% in-house developed algorithms",
@@ -261,6 +308,30 @@
           "Office space utilization"
         ]
       }
+    }
+  },
+  "whyChoose": {
+    "title": "Point",
+    "subtitle": "Why choose OMG Agents?",
+    "point1": {
+      "title": "Personal consultation designed with hands-on partnership and deep SME understanding",
+      "description": "Unlike automated onboarding processes, every OMG Agents client gets a dedicated consultant who learns your business inside-out. We provide hands-on guidance that leads to true growth and problem-solving, from strategy through implementation to ongoing optimization.",
+      "illustrationText": "Personal Partnership Approach"
+    },
+    "point2": {
+      "title": "Built specifically for SMEs, not enterprise giants",
+      "description": "While others focus on Fortune 500 companies, we specialize exclusively in small and medium enterprises. Our solutions scale with your growth, integrate with your existing tools, and provide enterprise capabilities at SME-friendly complexity and pricing levels.",
+      "illustrationText": "Built for Your Business Size"
+    },
+    "point3": {
+      "title": "Comprehensive AI solutions beyond just chatbots",
+      "description": "While others focus solely on chat, OMG Agents provides Chat + Voice + Visual Intelligence solutions. From customer service chatbots to call center automation to security monitoring, we solve the full spectrum of AI automation challenges your business faces.",
+      "illustrationText": "Complete AI Suite"
+    },
+    "point4": {
+      "title": "Providing deep and wide added value through ongoing partnership",
+      "description": "By combining proprietary technology with dedicated consultation, we solve complex challenges according to your specific objectives and growth trajectory. Our relationship doesn't end at deployment - we continuously optimize and evolve your AI solutions as your business grows.",
+      "illustrationText": "Long-term Growth Partnership"
     }
   }
 }

@@ -3,26 +3,74 @@
     "partners": "パートナー",
     "customers": "お客様",
     "team": "チーム",
-    "getStarted": "始める"
+    "getStarted": "始める",
+    "contact": "お問い合わせ",
+    "services": "サービス",
+    "aiChatSolutions": "AIチャットソリューション",
+    "customerService": "カスタマーサービス",
+    "internalSupport": "内部サポート",
+    "knowledgeBase": "ナレッジベース",
+    "aiVoiceSolutions": "AI音声ソリューション",
+    "callCenter": "コールセンター",
+    "voiceAutomation": "音声自動化",
+    "aiVisualSolutions": "AI視覚ソリューション",
+    "securityMonitoring": "セキュリティ・監視",
+    "businessAnalytics": "ビジネス分析",
+    "industries": "業界",
+    "retailEcommerce": "小売・EC",
+    "healthcare": "ヘルスケア",
+    "financialServices": "金融サービス",
+    "education": "教育",
+    "manufacturing": "製造業",
+    "useCases": "用途",
+    "customerSupport": "カスタマーサポート",
+    "salesSupport": "営業支援",
+    "processAutomation": "プロセス自動化",
+    "knowledgeManagement": "ナレッジマネジメント",
+    "qualityAssurance": "品質保証",
+    "resources": "リソース",
+    "caseStudies": "事例研究",
+    "webinars": "ウェビナー",
+    "documentation": "ドキュメント",
+    "news": "ニュース",
+    "aboutProducts": "製品・サービスについて",
+    "contactUs": "お問い合わせ",
+    "mainSections": "メインセクション",
+    "home": "ホーム",
+    "about": "私たちについて",
+    "products": "プロダクト",
+    "whyChoose": "選ばれる理由",
+    "aiSolutions": "AIソリューション",
+    "chatSolutions": "チャットソリューション",
+    "voiceSolutions": "音声ソリューション",
+    "visualSolutions": "視覚ソリューション",
+    "company": "会社情報",
+    "ourStory": "私たちのストーリー",
+    "ourTechnology": "私たちの技術",
+    "personalConsultation": "個人コンサルテーション",
+    "continuousInnovation": "継続的イノベーション",
+    "whyChooseUs": "選ばれる理由",
+    "smeFocus": "中小企業特化"
   },
   "hero": {
     "badge": "100%自社開発アルゴリズム",
-    "title": "中小企業の{smes}と繁栄を個別化された{aiSolutions}でサポート",
+    "title": "中小企業の{smes}と繁栄を「{aiSolutions}」でサポート",
     "smesHighlight": "成長",
-    "aiSolutionsHighlight": "AIソリューション",
-    "description": "インテリジェントな{chatAgents}から完全な{aiStrategy}まで - {inHouseAlgorithms}と個人コンサルテーションを組み合わせて、実際にビジネスに適したソリューションを提供します。",
+    "aiSolutionsHighlight": "個別化されたAIソリューション",
+    "description": "インテリジェントな{chatAgents}から完全な{aiStrategy}まで - 「{inHouseAlgorithms}」と「{personalConsultation}」を組み合わせて、実際にビジネスに適したソリューションを提供します。",
     "chatAgentsHighlight": "チャットエージェント",
     "aiStrategyHighlight": "AI戦略",
     "inHouseAlgorithmsHighlight": "自社開発アルゴリズム",
+    "personalConsultationHighlight": "個人コンサルテーション",
     "primaryButton": "中小企業への支援方法を見る",
     "secondaryButton": "コンサルテーションを予約"
   },
   "about": {
     "title": "私たちについて",
-    "subtitle": "OMG Agents SaaSとは？",
-    "mainHeading": "私たちは、独自のアルゴリズムと実践的なパートナーシップを組み合わせて、個別化されたAI SaaSソリューションと戦略的コンサルテーションを提供します。",
+    "subtitle": "「OMG Agents SaaS」とは？",
+    "mainHeading": "私たちは、独自のアルゴリズムと実践的なパートナーシップを組み合わせて、「個別化されたAI SaaSソリューション」と戦略的コンサルテーションを提供します。",
     "description": "OMG Agentsは、業界トップの専門家と私たち独自の社内アルゴリズムを使用して、次世代AI SaaSソリューションを開発しています。私たちのプラットフォームは、中小企業がスケールする際に直面する特定の自動化と顧客エンゲージメントの課題に対処します。",
-    "card1Title": "社内アルゴリズム",
+    "card1Title": "「社内アルゴリズム」",
     "card1Summary": "専門チームが開発した100%独自技術",
     "card1Description": "私たちのアルゴリズムは、機械学習と自然言語処理に10年以上の経験を持つAI専門家チームが一から構築しています。すべてのビジネスに適合しようとする既製品とは異なり、私たちの独自技術は中小企業のニーズに特化して設計されています。",
     "card1Benefit1": "より高速な実装時間（30-60日 vs 6ヶ月以上）",
@@ -30,7 +78,7 @@
     "card1Benefit3": "ベンダー制限のない完全なカスタマイズ",
     "card1Benefit4": "修正のための開発チームへの直接アクセス",
     "card1Benefit5": "既存のツールとワークフローとのシームレスな統合",
-    "card2Title": "個人コンサルテーション",
+    "card2Title": "「個人コンサルテーション」",
     "card2Summary": "ビジネス変革のための個別ガイダンス",
     "card2Description": "すべてのOMG Agentsクライアントには、あなたのチームの延長となる専任コンサルタントが付きます。私たちは単にソフトウェアを展開するだけでなく、AI変革の旅のすべてのステップであなたとパートナーを組み、初日から長期的な成長まで成功を保証します。",
     "card2Benefit1": "あなたのビジネスを内部まで理解する専任コンサルタント",
@@ -38,7 +86,7 @@
     "card2Benefit3": "新システムに関するチーム向けカスタムトレーニング",
     "card2Benefit4": "パフォーマンスデータに基づく継続的な最適化",
     "card2Benefit5": "コンサルタントへの直接電話/メールアクセス",
-    "card3Title": "中小企業特化",
+    "card3Title": "「中小企業特化」",
     "card3Summary": "成長する企業とその課題に特化して構築",
     "card3Description": "エンタープライズソリューションが大規模なITチームと予算を持つフォーチュン500企業向けに構築されているのに対し、私たちは中小企業の独自のニーズ、制約、機会に特化しています。私たちのソリューションはあなたの成長と共にスケールします。",
     "card3Benefit1": "中小企業向け価格でのエンタープライズ機能",
@@ -46,7 +94,7 @@
     "card3Benefit3": "ビジネスの成長に応じて自動的にスケール",
     "card3Benefit4": "管理するための専任ITスタッフは不要",
     "card3Benefit5": "変化するニーズに適応する柔軟な契約",
-    "card4Title": "継続的イノベーション",
+    "card4Title": "「継続的イノベーション」",
     "card4Summary": "あなたのニーズと業界の変化に合わせて常に進化",
     "card4Description": "あなたのAIソリューションは展開で終わりません。私たちは継続的にパフォーマンスを監視し、新しい機会を分析し、積極的に改善を提案します。AI技術が進歩し、あなたのビジネスが成長するにつれて、あなたのソリューションも進化します。",
     "card4Benefit1": "月次パフォーマンスレビューと最適化提案",
@@ -66,17 +114,17 @@
     "requestDemo": "デモをリクエスト",
     "suites": {
       "chat": {
-        "title": "OMGチャットソリューション",
+        "title": "「OMGチャットソリューション」",
         "tagline": "カスタマーサービスと内部サポート向け",
         "description": "インテリジェントなチャット自動化で顧客満足度とエージェント生産性を最大化"
       },
       "voice": {
-        "title": "OMG音声インテリジェンス",
+        "title": "「OMG音声インテリジェンス」",
         "tagline": "コールセンターと音声自動化向け",
         "description": "自然で結果を出すAI音声エージェントで電話でのやり取りを変革"
       },
       "visual": {
-        "title": "OMG視覚インテリジェンス",
+        "title": "「OMG視覚インテリジェンス」",
         "tagline": "セキュリティと監視アプリケーション向け",
         "description": "セキュリティ、高齢者ケア、ビジネス分析のための高度な視覚AI"
       }
@@ -262,8 +310,29 @@
         ]
       }
     }
+  },
+  "whyChoose": {
+    "title": "ポイント",
+    "subtitle": "なぜ「OMG Agents」を選ぶのか？",
+    "point1": {
+      "title": "「実践的なパートナーシップ」と深い中小企業理解に基づく「個人コンサルテーション」",
+      "description": "自動化されたオンボーディングプロセスとは異なり、すべてのOMG Agentsクライアントには、あなたのビジネスを内部まで理解する専任コンサルタントが付きます。戦略から実装、継続的な最適化まで、真の成長と問題解決につながる実践的なガイダンスを提供します。",
+      "illustrationText": "個人パートナーシップアプローチ"
+    },
+    "point2": {
+      "title": "エンタープライズの巨人ではなく、「中小企業」向けに特別に構築",
+      "description": "他の企業がフォーチュン500企業に焦点を当てているのに対し、私たちは中小企業に特化しています。私たちのソリューションはあなたの成長と共にスケールし、既存のツールと統合し、中小企業向けの複雑さと価格レベルでエンタープライズ機能を提供します。",
+      "illustrationText": "あなたのビジネス規模に構築"
+    },
+    "point3": {
+      "title": "チャットボットを超えた「包括的なAIソリューション」",
+      "description": "他の企業がチャットのみに焦点を当てているのに対し、OMG Agentsはチャット+音声+視覚インテリジェンスソリューションを提供します。カスタマーサービスチャットボットからコールセンター自動化、セキュリティ監視まで、あなたのビジネスが直面するAI自動化の課題の全スペクトラムを解決します。",
+      "illustrationText": "完全なAIスイート"
+    },
+    "point4": {
+      "title": "「継続的なパートナーシップ」を通じて深く広い付加価値を提供",
+      "description": "独自技術と専任コンサルテーションを組み合わせることで、あなたの特定の目標と成長軌道に従って複雑な課題を解決します。私たちの関係は展開で終わりません - あなたのビジネスが成長するにつれて、AIソリューションを継続的に最適化し、進化させます。",
+      "illustrationText": "長期的成長パートナーシップ"
+    }
   }
 }
-
-
-
