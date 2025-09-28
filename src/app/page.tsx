@@ -83,8 +83,10 @@ export default function Home() {
         <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
           <div 
             className="h-full transition-all duration-300 ease-out"
-            style={{ background: 'linear-gradient(to right, #733CFF, #9333ea)' }}
-            style={{ width: `${loadProgress}%` }}
+            style={{ 
+              background: 'linear-gradient(to right, #733CFF, #9333ea)',
+              width: `${loadProgress}%` 
+            }}
           />
         </div>
       )}
