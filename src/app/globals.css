@@ -285,6 +285,64 @@ body {
   .hero-mobile-stable.animate-in * {
     animation: none !important;
   }
+
+  /* Mobile WhyChoose section - stable animations */
+  .why-choose-mobile-stable {
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+  }
+
+  .why-choose-mobile-stable.animate-in {
+    opacity: 1;
+  }
+
+  .why-choose-mobile-stable.animate-in .why-choose-content {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease-out 0.2s, transform 0.4s ease-out 0.2s;
+  }
+
+  .why-choose-mobile-stable.animate-in .why-choose-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Prevent staggered animation restarts on mobile */
+  .why-choose-mobile-stable.animate-in {
+    animation: none !important;
+  }
+
+  .why-choose-mobile-stable.animate-in * {
+    animation: none !important;
+  }
+
+  /* Mobile points - simple reveal */
+  .why-choose-mobile-stable.animate-in .point-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .why-choose-mobile-stable.animate-in .point-item:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+
+  .why-choose-mobile-stable.animate-in .point-item:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+
+  .why-choose-mobile-stable.animate-in .point-item:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+
+  .why-choose-mobile-stable.animate-in .point-item:nth-child(4) {
+    transition-delay: 0.4s;
+  }
+
+  .why-choose-mobile-stable.animate-in .point-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-slide-in-top {

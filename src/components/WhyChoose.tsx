@@ -25,13 +25,24 @@ export default function WhyChoose({ isContentReady = false }: WhyChooseProps) {
   // Force animation on mount if element is already visible (for refresh at bottom)
   const [forceVisible, setForceVisible] = React.useState(false);
   
+  // Mobile-specific stable animation state
+  const [mobileAnimated, setMobileAnimated] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(false);
+  
   React.useEffect(() => {
+    // Check if mobile on mount
+    setIsMobile(window.innerWidth <= 768);
+    
     const checkVisibility = () => {
       if (elementRef.current) {
         const rect = elementRef.current.getBoundingClientRect();
         const isInView = rect.top < window.innerHeight && rect.bottom > 0;
         if (isInView) {
           setForceVisible(true);
+          if (isMobile && !mobileAnimated) {
+            // Small delay for mobile stability
+            setTimeout(() => setMobileAnimated(true), 100);
+          }
         }
       }
     };
@@ -41,13 +52,15 @@ export default function WhyChoose({ isContentReady = false }: WhyChooseProps) {
     const timeout = setTimeout(checkVisibility, 100);
     
     return () => clearTimeout(timeout);
-  }, []);
+  }, [isMobile, mobileAnimated]);
   return (
     <section 
       ref={elementRef}
       id="why-choose" 
       className={`py-20 bg-gray-100 relative transition-all duration-1000 ${
         isVisible || forceVisible ? 'opacity-100' : 'opacity-0'
+      } ${
+        isMobile ? `why-choose-mobile-stable ${mobileAnimated ? 'animate-in' : ''}` : ''
       }`}
     >
       {/* Strong blue gradient at top */}
@@ -57,7 +70,7 @@ export default function WhyChoose({ isContentReady = false }: WhyChooseProps) {
         {/* Section Header */}
         <div className={`mb-16 transition-all duration-700 delay-200 ${
           isVisible || forceVisible ? 'animate-fade-in-up' : 'animate-hidden'
-        }`}>
+        } ${isMobile ? 'why-choose-content' : ''} ${isMobile && mobileAnimated ? 'visible' : ''}`}>
           <h2 className="text-lg font-normal text-gray-500 mb-4">{t('whyChoose.title')}</h2>
           <h3 className="text-3xl font-bold text-gray-900 mb-6 leading-tight">
             {t('whyChoose.subtitle')}
@@ -66,7 +79,9 @@ export default function WhyChoose({ isContentReady = false }: WhyChooseProps) {
         </div>
 
         {/* Point 1 - Personal Consultation */}
-        <div ref={pointsRef as React.RefObject<HTMLDivElement>} className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+        <div ref={pointsRef as React.RefObject<HTMLDivElement>} className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24 ${
+          isMobile ? 'point-item' : ''
+        } ${isMobile && mobileAnimated ? 'visible' : ''}`}>
           {/* Illustration Left */}
           <div className={`order-2 lg:order-1 transition-all duration-700 delay-300 ${
             visibleItems.includes(0) || forceVisible ? 'animate-fade-in-left' : 'animate-hidden'
@@ -119,7 +134,9 @@ export default function WhyChoose({ isContentReady = false }: WhyChooseProps) {
         </div>
 
         {/* Point 2 - SME Expertise */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24 ${
+          isMobile ? 'point-item' : ''
+        } ${isMobile && mobileAnimated ? 'visible' : ''}`}>
           {/* Content Left */}
           <div className={`transition-all duration-700 delay-500 ${
             visibleItems.includes(1) || forceVisible ? 'animate-fade-in-left' : 'animate-hidden'
@@ -169,7 +186,9 @@ export default function WhyChoose({ isContentReady = false }: WhyChooseProps) {
         </div>
 
         {/* Point 3 - Comprehensive Solutions */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24 ${
+          isMobile ? 'point-item' : ''
+        } ${isMobile && mobileAnimated ? 'visible' : ''}`}>
           {/* Illustration Left */}
           <div className={`order-2 lg:order-1 transition-all duration-700 delay-700 ${
             visibleItems.includes(2) || forceVisible ? 'animate-fade-in-left' : 'animate-hidden'
@@ -230,7 +249,9 @@ export default function WhyChoose({ isContentReady = false }: WhyChooseProps) {
         </div>
 
         {/* Point 4 - Continuous Partnership */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center ${
+          isMobile ? 'point-item' : ''
+        } ${isMobile && mobileAnimated ? 'visible' : ''}`}>
           {/* Content Left */}
           <div className={`transition-all duration-700 delay-900 ${
             visibleItems.includes(3) || forceVisible ? 'animate-fade-in-left' : 'animate-hidden'
