@@ -16,16 +16,16 @@ export default function LanguageToggle({ variant = 'default' }: LanguageTogglePr
     setLanguage('ja');
   };
 
-  // Footer variant uses the same segmented control but with dark theme
+  // Footer variant uses white theme to match footer
   if (variant === 'footer') {
     return (
-      <div className="flex bg-gray-800 rounded-md shadow-sm border border-gray-700 overflow-hidden">
+      <div className="flex bg-white rounded-md shadow-sm border border-gray-200 overflow-hidden">
         <button
           onClick={setLanguageToJa}
           className={`px-2 py-1 text-xs font-medium transition-colors ${
             language === 'ja' 
               ? 'text-white' 
-              : 'text-gray-400 hover:text-gray-200'
+              : 'text-gray-600 hover:text-gray-800'
           }`}
           style={{
             backgroundColor: language === 'ja' ? '#733CFF' : 'transparent'
@@ -38,7 +38,7 @@ export default function LanguageToggle({ variant = 'default' }: LanguageTogglePr
           className={`px-2 py-1 text-xs font-medium transition-colors ${
             language === 'en' 
               ? 'text-white' 
-              : 'text-gray-400 hover:text-gray-200'
+              : 'text-gray-600 hover:text-gray-800'
           }`}
           style={{
             backgroundColor: language === 'en' ? '#733CFF' : 'transparent'
