@@ -33,59 +33,29 @@ export default function ContactModal({ isOpen, onClose, preFilledMessage = '' }:
     }
   }, [isOpen, preFilledMessage]);
 
-  // Close modal on escape key
+  // Consolidated modal setup/cleanup
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
-        onClose();
-      }
-    };
-
     if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
-      // Store original overflow values
-      const originalBodyOverflow = document.body.style.overflow;
-      const originalDocumentOverflow = document.documentElement.style.overflow;
-      
-      document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
-      
-      return () => {
-        document.removeEventListener('keydown', handleEscape);
-        // Restore original overflow values
-        document.body.style.overflow = originalBodyOverflow;
-        document.documentElement.style.overflow = originalDocumentOverflow;
-        // Ensure smooth scrolling is restored
-        document.documentElement.style.scrollBehavior = 'smooth';
-        document.body.style.scrollBehavior = 'smooth';
+      const handleEscape = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          onClose();
+        }
       };
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-    };
-  }, [isOpen, onClose]);
-
-  // Reset form when modal opens
-  useEffect(() => {
-    if (isOpen) {
+      
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
+      
       setSubmitStatus(null);
       setSelectedFiles([]);
       setExpandedTextarea(false);
       setFormStartTime(Date.now());
-      // Don't reset messageValue here as it will be set by the preFilledMessage effect
-    } else {
-      // When modal closes, ensure scroll is fully restored
-      setTimeout(() => {
-        document.documentElement.style.overflow = '';
+      
+      return () => {
+        document.removeEventListener('keydown', handleEscape);
         document.body.style.overflow = '';
-        document.documentElement.style.scrollBehavior = 'smooth';
-        document.body.style.scrollBehavior = 'smooth';
-        // Force a reflow to ensure changes take effect
-        document.body.offsetHeight;
-      }, 100);
+      };
     }
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   const validateFile = (file: File): string | null => {
     const maxSize = 10 * 1024 * 1024; // 10MB

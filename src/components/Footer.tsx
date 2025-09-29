@@ -72,12 +72,12 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
       <div className="absolute top-0 left-0 right-0 h-16 pointer-events-none" style={{ background: 'linear-gradient(to bottom, #e9d5ff, transparent)' }}></div>
       
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 py-8 lg:py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8">
           
           {/* Company Info */}
           <div className="md:col-span-2 lg:col-span-2">
-            <div className="mb-4 -ml-4">
+            <div className="mb-4">
               <button
                 onClick={() => {
                   const element = document.getElementById('hero');
@@ -96,7 +96,7 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
                 />
               </button>
             </div>
-            <p className="text-gray-600 text-sm leading-relaxed max-w-md mb-1 -translate-y-2">
+            <p className="text-gray-600 text-sm leading-relaxed max-w-md mb-1">
               {t('footer.companyDescription')}
             </p>
             <div className="text-xs text-gray-500 mt-1 pt-3 border-t border-gray-200">
@@ -184,7 +184,7 @@ export default function Footer({ onOpenProduct, onOpenAboutCard, onOpenLegalModa
               <h3 className="text-base font-bold text-gray-800">
                 {t('footer.contact')}
               </h3>
-              <div className="translate-x-40">
+              <div>
                 <LanguageToggle />
               </div>
             </div>

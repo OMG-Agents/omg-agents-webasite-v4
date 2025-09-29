@@ -12,11 +12,18 @@
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  overflow-x: clip;
+  width: 100%;
+}
+
 html, body {
   margin: 0;
   padding: 0;
+}
+
+body {
   width: 100%;
-  overflow-x: hidden;
 }
 
 body {
@@ -442,13 +449,11 @@ body {
 /* Page Load Animation */
 .page-load-enter {
   opacity: 0;
-  transform: scale(0.95);
 }
 
 .page-load-enter-active {
   opacity: 1;
-  transform: scale(1);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.5s ease;
 }
 
 /* Orb Integration */

@@ -20,28 +20,25 @@ export default function Home() {
   // Page load animation state
   const { isLoaded, isHeroVisible, isContentReady, loadProgress } = usePageLoad();
 
-  // Centralized scroll management for all modals
+  // Ensure scroll is always available
   useEffect(() => {
-    const anyModalOpen = openProductId || openAboutCardId || legalModalType || isContactModalOpen;
-    
-    if (anyModalOpen) {
-      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-      document.body.style.overflow = 'hidden';
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
-      
-      const header = document.querySelector('nav');
-      if (header instanceof HTMLElement) {
-        header.style.paddingRight = `${scrollbarWidth}px`;
-      }
-    } else {
+    const restoreScroll = () => {
+      document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
-      document.body.style.paddingRight = '';
-      const header = document.querySelector('nav');
-      if (header instanceof HTMLElement) {
-        header.style.paddingRight = '';
-      }
-    }
-  }, [openProductId, openAboutCardId, legalModalType, isContactModalOpen]);
+      document.documentElement.style.scrollBehavior = 'smooth';
+      document.body.style.scrollBehavior = 'smooth';
+    };
+
+    // Listen for modal close events
+    window.addEventListener('modalClosed', restoreScroll);
+    
+    // Restore scroll on page load
+    restoreScroll();
+
+    return () => {
+      window.removeEventListener('modalClosed', restoreScroll);
+    };
+  }, []);
 
   // Removed scroll to top for debugging
 

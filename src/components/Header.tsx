@@ -16,7 +16,7 @@ export default function Header({ onOpenProduct, onOpenAboutCard, onOpenContactMo
   const { t } = useTranslation();
 
   return (
-    <nav className={`sticky top-0 z-[100000] bg-white w-full border-b border-gray-100 transition-all duration-1000 ${
+    <nav className={`sticky top-0 z-50 bg-white w-full border-b border-gray-100 transition-all duration-1000 ${
       isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
     }`}>
       <div className="flex items-center justify-between w-full px-4 sm:px-8 py-4">
@@ -76,6 +76,29 @@ export default function Header({ onOpenProduct, onOpenAboutCard, onOpenContactMo
           <div className="block sm:hidden">
             <LanguageToggle />
           </div>
+          
+          {/* Contact Button - Mobile */}
+          <button
+            onClick={onOpenContactModal}
+            className="block sm:hidden p-2 text-gray-600 hover:text-gray-800 transition-all duration-300 hover-lift micro-bounce"
+            onMouseEnter={(e) => e.currentTarget.style.color = '#733CFF'}
+            onMouseLeave={(e) => e.currentTarget.style.color = '#6b7280'}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 micro-rotate"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              />
+            </svg>
+          </button>
           
           {/* Hamburger Menu */}
           <button
