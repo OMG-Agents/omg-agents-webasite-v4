@@ -385,27 +385,12 @@ export default function ContactModal({ isOpen, onClose, preFilledMessage = '' }:
     document.documentElement.style.scrollBehavior = 'smooth';
     document.body.style.scrollBehavior = 'smooth';
     
-    // Force a reflow to ensure changes take effect
-    document.body.offsetHeight;
-    
     // Dispatch modalClosed event for scroll restoration
     const event = new CustomEvent('modalClosed');
     window.dispatchEvent(event);
     onClose();
   };
 
-  // Simple approach - just prevent scrolling without changing position
-  useEffect(() => {
-    if (isOpen) {
-      // Simple approach - just prevent scrolling without changing position
-      const originalOverflow = document.body.style.overflow;
-      document.body.style.overflow = 'hidden';
-      
-      return () => {
-        document.body.style.overflow = originalOverflow;
-      };
-    }
-  }, [isOpen]);
 
   if (!isOpen) return null;
 

@@ -28,18 +28,6 @@ export default function Products({ openProductId = null, onCloseModal = () => {}
     }
   }, [openProductId]);
 
-  // Simple approach - just prevent scrolling without changing position
-  useEffect(() => {
-    if (activeModal) {
-      // Simple approach - just prevent scrolling without changing position
-      const originalOverflow = document.body.style.overflow;
-      document.body.style.overflow = 'hidden';
-      
-      return () => {
-        document.body.style.overflow = originalOverflow;
-      };
-    }
-  }, [activeModal]);
 
   // Function to close modal and notify parent
   const closeModal = () => {
