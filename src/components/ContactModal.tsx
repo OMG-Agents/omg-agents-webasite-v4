@@ -21,15 +21,15 @@ export default function ContactModal({ isOpen, onClose, preFilledMessage = '' }:
   const [dragActive, setDragActive] = useState(false);
   const [expandedTextarea, setExpandedTextarea] = useState(false);
   const [formStartTime, setFormStartTime] = useState<number | null>(null);
+  const [messageValue, setMessageValue] = useState('');
   const formRef = useRef<HTMLFormElement>(null);
 
   // Set pre-filled message when modal opens
   useEffect(() => {
-    if (isOpen && preFilledMessage && formRef.current) {
-      const messageTextarea = formRef.current.querySelector('textarea[name="message"]') as HTMLTextAreaElement;
-      if (messageTextarea) {
-        messageTextarea.value = preFilledMessage;
-      }
+    if (isOpen && preFilledMessage) {
+      setMessageValue(preFilledMessage);
+    } else if (isOpen && !preFilledMessage) {
+      setMessageValue('');
     }
   }, [isOpen, preFilledMessage]);
 
@@ -73,6 +73,7 @@ export default function ContactModal({ isOpen, onClose, preFilledMessage = '' }:
       setSelectedFiles([]);
       setExpandedTextarea(false);
       setFormStartTime(Date.now());
+      // Don't reset messageValue here as it will be set by the preFilledMessage effect
     } else {
       // When modal closes, ensure scroll is fully restored
       setTimeout(() => {
@@ -350,6 +351,7 @@ export default function ContactModal({ isOpen, onClose, preFilledMessage = '' }:
           formRef.current.reset();
         }
         setSelectedFiles([]);
+        setMessageValue('');
         
         // Clear status after 5 seconds
         setTimeout(() => setSubmitStatus(null), 5000);
@@ -585,6 +587,8 @@ export default function ContactModal({ isOpen, onClose, preFilledMessage = '' }:
                   name="message"
                   required
                   rows={expandedTextarea ? 8 : 4}
+                  value={messageValue}
+                  onChange={(e) => setMessageValue(e.target.value)}
                   className={`w-full px-4 py-3 bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-500 resize-none hover:border-purple-300 ${
                     expandedTextarea ? 'text-xs sm:text-sm' : 'text-sm sm:text-base'
                   }`}
