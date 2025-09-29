@@ -385,6 +385,9 @@ export default function ContactModal({ isOpen, onClose, preFilledMessage = '' }:
     document.documentElement.style.scrollBehavior = 'smooth';
     document.body.style.scrollBehavior = 'smooth';
     
+    // Force a reflow to ensure changes take effect
+    document.body.offsetHeight;
+    
     // Dispatch modalClosed event for scroll restoration
     const event = new CustomEvent('modalClosed');
     window.dispatchEvent(event);

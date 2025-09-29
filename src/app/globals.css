@@ -19,6 +19,11 @@ html, body {
   overflow-x: hidden;
 }
 
+/* Ensure sticky positioning works properly */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

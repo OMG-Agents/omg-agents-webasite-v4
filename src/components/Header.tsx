@@ -16,7 +16,7 @@ export default function Header({ onOpenProduct, onOpenAboutCard, onOpenContactMo
   const { t } = useTranslation();
 
   return (
-    <nav className={`sticky top-0 z-50 bg-white w-full border-b border-gray-100 transition-all duration-1000 ${
+    <nav className={`sticky top-0 z-[60] bg-white w-full border-b border-gray-100 transition-all duration-1000 ${
       isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
     }`}>
       <div className="flex items-center justify-between w-full px-4 sm:px-8 py-4">
