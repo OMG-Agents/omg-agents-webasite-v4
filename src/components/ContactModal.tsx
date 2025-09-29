@@ -26,7 +26,7 @@ export default function ContactModal({ isOpen, onClose, preFilledMessage = '' }:
 
   // Set pre-filled message when modal opens
   useEffect(() => {
-    if (isOpen && preFilledMessage) {
+    if (isOpen && preFilledMessage && typeof preFilledMessage === 'string') {
       setMessageValue(preFilledMessage);
     } else if (isOpen && !preFilledMessage) {
       setMessageValue('');
