@@ -24,6 +24,28 @@ export const metadata: Metadata = {
     shortcut: "/URL ICO.ico",
     apple: "/URL ICO.ico",
   },
+  openGraph: {
+    title: "OMG Agents - AI Solutions for SMEs",
+    description: "OMG Agents provides customized AI solutions for small and medium enterprises, combining proprietary algorithms with personal consultation to drive business growth.",
+    url: "https://omgagents.ai",
+    siteName: "OMG Agents",
+    images: [
+      {
+        url: "/omg-logo-original.svg",
+        width: 1200,
+        height: 630,
+        alt: "OMG Agents - AI Solutions for SMEs",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "OMG Agents - AI Solutions for SMEs",
+    description: "OMG Agents provides customized AI solutions for small and medium enterprises, combining proprietary algorithms with personal consultation to drive business growth.",
+    images: ["/omg-logo-original.svg"], // Same image for Twitter
+  },
 };
 
 export default function RootLayout({
