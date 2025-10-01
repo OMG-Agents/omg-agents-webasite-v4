@@ -23,13 +23,18 @@ export default function ContactModal({ isOpen, onClose, preFilledMessage = '' }:
   const [formStartTime, setFormStartTime] = useState<number | null>(null);
   const [messageValue, setMessageValue] = useState('');
   const formRef = useRef<HTMLFormElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   // Set pre-filled message when modal opens
   useEffect(() => {
     if (isOpen && preFilledMessage && typeof preFilledMessage === 'string') {
       setMessageValue(preFilledMessage);
     } else if (isOpen && !preFilledMessage) {
+      // Clear the textarea to allow placeholder to show
       setMessageValue('');
+      if (textareaRef.current) {
+        textareaRef.current.value = '';
+      }
     }
   }, [isOpen, preFilledMessage]);
 
@@ -542,6 +547,7 @@ export default function ContactModal({ isOpen, onClose, preFilledMessage = '' }:
                   </button>
                 </div>
                 <textarea 
+                  ref={textareaRef}
                   name="message"
                   required
                   rows={expandedTextarea ? 8 : 4}
@@ -552,6 +558,7 @@ export default function ContactModal({ isOpen, onClose, preFilledMessage = '' }:
                   }`}
                   placeholder={t('contactForm.form.messagePlaceholder')}
                   disabled={isSubmitting}
+                  key={`message-${t('contactForm.form.messagePlaceholder')}`}
                 ></textarea>
                 <p className="text-xs text-gray-500 mt-2">
                   {t('contactForm.form.messageTip')}
